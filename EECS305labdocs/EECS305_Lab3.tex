@@ -210,6 +210,17 @@ Procedure:
 \item Open the model \textbf{Lab3\_Transient.slx} and run it. Save the theta trajectories associated with each of the different values of $K_{1}$. You will need this data for an exercise.
 \end{enumerate}
 
+\subsection{System Type and Tracking Error}
+In this portion of the procedure, we explore the effect of system type on our ability to track reference signals of various types. The Simulink model used in this portion includes five different cases. First, we have position feedback used to track a step, ramp, and parabolic reference. The remaining two cases use speed feedback with step and ramp references. 
+
+Procedure:
+\begin{enumerate}
+\item Open the model \textbf{Lab\_SystemType.slx} and run it. For each case, observe the following: Does the system state track the reference? If not, characterize the error (is the error constant, increasingly linearly, increasing quadratically, etc.). How does the system's ability to track the same signal differ depending on whether speed or position is being tracked?
+
+\item If a reference signal is not being tracked, adjust the gain for that case. What happens to the error? Is it possible to eliminate the error?
+
+\end{enumerate}
+
 \section{EXERCISES:}
 \begin{enumerate} 
 \item \label{ex:maketable} Fill in the following table for each case.
@@ -240,6 +251,8 @@ Gain & Poles & \%overshoot & $\zeta$ & $\omega_{n}$ & $T_{settling}$ & $T_{peak}
 \item Overshoot of the closed-loop system
 \item Settling time of the closed-loop system
 \end{enumerate}
+
+\item Explain the tracking errors observed in the System Type and Tracking Error in terms of the Final Value Theorem.
 
 \end{enumerate}
 
