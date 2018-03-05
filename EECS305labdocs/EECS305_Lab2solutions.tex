@@ -5,6 +5,7 @@
 \usepackage{amssymb}
 \usepackage{array}
 \usepackage{graphicx}
+\usepackage{float}
 \author{Jordan Murray}
 \title{EECS305 Lab5}
 \begin{document}
@@ -19,7 +20,7 @@
 \textbf{3.1 Model Identification}
 The Simulink model Lab2\_Identification was run. A unit step function was given as an input to the DC model block producing the following trajectories:
 
-\begin{figure}[here]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_identification1.png}
 \caption{Typical impulse response for the DCservo model. Omega in blue.}
 \label{fig:id1}
@@ -44,7 +45,7 @@ ks = mean(avgomega)
 
 which gives a steady state value of about .0993 in this case. Since our input was a unit step function, our estimate for $K_{s}$ is .0933/1 = .0993. Next, we attempt to estimate $\tau$. First, we find the time at which the response is 63.2\% of its final value, or .0628. We can do this by inspection using the scope's magnification cursor:
 
-\begin{figure}[here]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_identification2white.png}
 \caption{Zooming in on the omega trajectory near the point at which it is equal to 63.2\% of the final value. }
 \label{fig:id2}
@@ -54,7 +55,7 @@ This time is about 1.265, .265 seconds after the application of the step functio
 
 In the Simulink model Lab2\_Comparison, we update the transfer function block according the parameters determined for our model of the DC servo system.
 
-\begin{figure}[here]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_comp1.png}
 \caption{Lab2\_Comparison.slx with updated model transfer function block. }
 \label{fig:comp1}
@@ -62,7 +63,7 @@ In the Simulink model Lab2\_Comparison, we update the transfer function block ac
 
 We compare the velocity trajectory of our model to that of the DC servo system. 
 
-\begin{figure}[here]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_comp2.png}
 \caption{Omega trajectory comparison. Our model in red and the DC servo system in blue. }
 \label{fig:comp2}
@@ -70,19 +71,20 @@ We compare the velocity trajectory of our model to that of the DC servo system.
 
 Our model matches the behavior of the system reasonably well, though our model doesn't seem to completely describe the dynamics of the system. Though the curves intersect around one time constant, the model curve is substantially higher before and substantially lower after, until both curves settle at the final value.
 
-\begin{figure}[here]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_mismatch.png}
 \caption{The difference in omega trajectories between our model and the system. While not very large, the difference during the rise is greater than can be explained by noise alone. }
 \label{fig:comp3}
 \end{figure}
 
 It doesn't seem that we can do much better by tweaking parameters, a shorter time constant may reduce error after the curves intersect  at the cost of more error before and vice-versa for a longer time constant. We will stick with the paramter values determined.
+\\
 
 \textbf{3.2 Transient Response}
 
 	The model Lab2\_Transient contains 7 DC servo systems each with a different position feedback gain. We run the model, producing a plot with a family of position trajectories:
 	
-\begin{figure}[here]
+\begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_transfam.png}
 \caption{The family of curves produced from the set of feedback gains (1,2,4,8,16,32,64) with their respective colors yellow, blue, red, green, purple, cyan, and magenta }
 \label{fig:transfam}
@@ -100,13 +102,13 @@ It doesn't seem that we can do much better by tweaking parameters, a shorter tim
 \begin{tabular}{|c|c|c|c|c|c|c|c|}
 \hline
 Gain & Poles & \%overshoot & $\zeta$ & $\omega_{n}$ & $T_{settling}$ & $T_{peak}$ & $T_{r}$ \\ \hline
-1 & -3.67, -1.02,1 & 0 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
-2 & -3.56,-.2103 & 0 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
-4 & -3.32, -.451 & 0 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
-8 & -2.64, -1.14 & 0 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
-16 & -1.89 $\pm$ 1.56i & 1 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
-32 & -1.89 $\pm$ 2.90i & 9 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
-64 & -1.89 $\pm$ 4.52i & 13 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
+1 & -3.67, -.102 & - & 3.08 & .612 & 38.0 & - & 20.9 \\ \hline 
+2 & -3.56, -.2103 & - & 2.18 & .866 & 18.2 & - & 10.5 \\ \hline 
+4 & -3.32, -.451 & - & 1.55 & 1.22  & 9.3 & - & 4.97 \\ \hline 
+8 & -2.64, -1.14 & - & 1.09 & 1.73  & 4.01 & - & 2.17 \\ \hline 
+16 & -1.89 $\pm$ 1.56i & 1 & .7706 & 2.45 & 1.50 & 2.03 & 1.68 \\ \hline 
+32 & -1.89 $\pm$ 2.90i & 9 & .545 & 3.46 & 2.22 & 1.44 & 1.14 \\ \hline 
+64 & -1.89 $\pm$ 4.52i & 13 & .385 & 4.90 & 2.84 & 1.35 & 1.09 \\ \hline 
 
 \end{tabular}
 \end{center}
@@ -141,6 +143,55 @@ the following MATLAB script was used to calculate the poles of the closed loop t
 
 
 The percent overshoot was measured by inspection using the scope.
+
+ For a general second order system:
+
+\begin{equation}
+	G(S) = \frac{\omega_{n}^{2}}{s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}}
+\end{equation}
+
+The preceding script MATLAB script gives the closed loop transfer function for each $K_{1}$. From this and the relation above, we can calculate $\omega_{n}$ and then $\zeta$ for each $K_{1}$.
+
+
+$T_{settling}$ is the elapsed time between settling within the 2\% band and the application of the input. $T_{peak}$ is the elapsed time between attainment of the maximum value and application of the input. $T_{peak}$ is only defined for underdamped systems. $T_{r}$ is the rise time, defined for underdamped systems as the elapsed time between first attainment of the target value and the application of the input, and for critically or overdamped systems as $T_{r1}$, the elapsed time between attainment of the 90\% and 10\% values. All of these values were determined by inspection using the scope.
+
+
+\item (a) Poles plotted in the s-plane for all values of K
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{imglab/lab2sol_ex2a.png}
+\caption{Closed-loop poles for all values of K. }
+\label{fig:ex2a}
+\end{figure}
+
+(b) $\zeta$ plotted vs $K_{1}$.
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{imglab/lab2sol_zetavsk.png}
+\caption{$\zeta$ vs $K_{1}$. }
+\label{fig:zetavsk}
+\end{figure}
+
+(c) \% overshoot plotted vs $\zeta$
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{imglab/lab2sol_osvszeta.png}
+\caption{Overshoot vs. $\zeta$ }
+\label{fig:osvszeta}
+\end{figure}
+
+(d) settling time vs $\zeta$
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{imglab/lab2sol_stvszeta.png}
+\caption{settling time vs. $\zeta$ }
+\label{fig:stvszeta}
+\end{figure}
+
+\item 
+
+(a) Increasing K pulls the closed loop poles from their open loop locations on the real axis toward each other. Where they meet, they diverge parallel to the imaginary axis as K continues to increase.
+
+(b) There is no overshoot until a critical value of K is reached, at which point the overshoot increases with K.
+
+(c) An overdamped system will take a long time to approach its steady state value for small K. The settling time initially decreases with increasing K until a critical value is reached, past which point the underdamped system will experience oscillations that take an increasingly long time to subside below the 2\% threshold.
 
 \end{enumerate}
 

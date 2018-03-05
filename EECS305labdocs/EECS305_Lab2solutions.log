@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.17)  5 MAR 2018 05:38
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.17)  5 MAR 2018 09:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -139,35 +139,43 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen114
 \Gin@req@width=\dimen115
 )
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count100
+\float@exts=\toks23
+\float@box=\box28
+\@float@everytoks=\toks24
+\@floatcapt=\box29
+)
 (./EECS305_Lab2solutions.aux)
 \openout1 = `EECS305_Lab2solutions.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
-LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count100
+\scratchcounter=\count101
 \scratchdimen=\dimen116
-\scratchbox=\box28
-\nofMPsegments=\count101
-\nofMParguments=\count102
-\everyMPshowfont=\toks23
-\MPscratchCnt=\count103
+\scratchbox=\box30
+\nofMPsegments=\count102
+\nofMParguments=\count103
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count104
 \MPscratchDim=\dimen117
-\MPnumerator=\count104
-\makeMPintoPDFobject=\count105
-\everyMPtoPDFconversion=\toks24
+\MPnumerator=\count105
+\makeMPintoPDFobject=\count106
+\everyMPtoPDFconversion=\toks26
 ) (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
 Package: pdftexcmds 2011/11/29 v0.20 Utility functions of pdfTeX for LuaTeX (HO
 )
@@ -218,25 +226,25 @@ e
 ))
 
 LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <24> not available
-(Font)              size <24.88> substituted on input line 12.
+(Font)              size <24.88> substituted on input line 13.
 
 
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <24> not available
-(Font)              size <24.88> substituted on input line 13.
+(Font)              size <24.88> substituted on input line 14.
 
 <imglab/lab2sol_identification1.png, id=1, 1927.2pt x 1031.855pt>
 File: imglab/lab2sol_identification1.png Graphic file (type png)
 
 <use imglab/lab2sol_identification1.png>
 Package pdftex.def Info: imglab/lab2sol_identification1.png used on input line 
-23.
+24.
 (pdftex.def)             Requested size: 360.0pt x 192.74808pt.
-LaTeX Font Info:    Try loading font information for U+msa on input line 29.
+LaTeX Font Info:    Try loading font information for U+msa on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 29.
+LaTeX Font Info:    Try loading font information for U+msb on input line 30.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -249,82 +257,100 @@ File: imglab/lab2sol_identification2white.png Graphic file (type png)
 
 <use imglab/lab2sol_identification2white.png>
 Package pdftex.def Info: imglab/lab2sol_identification2white.png used on input 
-line 48.
+line 49.
 (pdftex.def)             Requested size: 360.0pt x 192.74808pt.
 
 <imglab/lab2sol_comp1.png, id=13, 1927.2pt x 1031.855pt>
 File: imglab/lab2sol_comp1.png Graphic file (type png)
 
 <use imglab/lab2sol_comp1.png>
-Package pdftex.def Info: imglab/lab2sol_comp1.png used on input line 58.
+Package pdftex.def Info: imglab/lab2sol_comp1.png used on input line 59.
 (pdftex.def)             Requested size: 360.0pt x 192.74808pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<imglab/lab2sol_comp2.png, id=14, 1927.2pt x 1031.855pt>
+ [2 <./imglab/lab2sol_identification2white.png>]
+<imglab/lab2sol_comp2.png, id=18, 1927.2pt x 1031.855pt>
 File: imglab/lab2sol_comp2.png Graphic file (type png)
 
 <use imglab/lab2sol_comp2.png>
-Package pdftex.def Info: imglab/lab2sol_comp2.png used on input line 66.
+Package pdftex.def Info: imglab/lab2sol_comp2.png used on input line 67.
 (pdftex.def)             Requested size: 360.0pt x 192.74808pt.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<imglab/lab2sol_mismatch.png, id=15, 1927.2pt x 1031.855pt>
+<imglab/lab2sol_mismatch.png, id=19, 1927.2pt x 1031.855pt>
 File: imglab/lab2sol_mismatch.png Graphic file (type png)
 
 <use imglab/lab2sol_mismatch.png>
-Package pdftex.def Info: imglab/lab2sol_mismatch.png used on input line 74.
+Package pdftex.def Info: imglab/lab2sol_mismatch.png used on input line 75.
 (pdftex.def)             Requested size: 360.0pt x 192.74808pt.
+ [3 <./imglab/lab2sol_comp1.png> <./imglab/lab2sol_comp2.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 80--82
 
+ []
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[2 <./imglab/lab2sol_identification2white.png>]
-<imglab/lab2sol_transfam.png, id=20, 1925.1925pt x 1031.855pt>
+<imglab/lab2sol_transfam.png, id=23, 1925.1925pt x 1031.855pt>
 File: imglab/lab2sol_transfam.png Graphic file (type png)
 
 <use imglab/lab2sol_transfam.png>
-Package pdftex.def Info: imglab/lab2sol_transfam.png used on input line 86.
+Package pdftex.def Info: imglab/lab2sol_transfam.png used on input line 88.
 (pdftex.def)             Requested size: 360.0pt x 192.93701pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (32.35255pt too wide) in paragraph at lines 100--112
+ [4 <./imglab/lab2sol_mismatch.png>]
+Overfull \hbox (30.52747pt too wide) in paragraph at lines 102--114
  [] 
  []
 
-[3 <./imglab/lab2sol_comp1.png>] [4 <./imglab/lab2sol_comp2.png>] [5 <./imglab/
-lab2sol_mismatch.png> <./imglab/lab2sol_transfam.png>]
-(./EECS305_Lab2solutions.aux)
+[5 <./imglab/lab2sol_transfam.png>]
+<imglab/lab2sol_ex2a.png, id=31, 1138.2525pt x 622.325pt>
+File: imglab/lab2sol_ex2a.png Graphic file (type png)
+
+<use imglab/lab2sol_ex2a.png>
+Package pdftex.def Info: imglab/lab2sol_ex2a.png used on input line 162.
+(pdftex.def)             Requested size: 360.0pt x 196.82156pt.
+ [6]
+<imglab/lab2sol_zetavsk.png, id=36, 1138.2525pt x 622.325pt>
+File: imglab/lab2sol_zetavsk.png Graphic file (type png)
+
+<use imglab/lab2sol_zetavsk.png>
+Package pdftex.def Info: imglab/lab2sol_zetavsk.png used on input line 169.
+(pdftex.def)             Requested size: 360.0pt x 196.82156pt.
+
+<imglab/lab2sol_osvszeta.png, id=37, 1138.2525pt x 622.325pt>
+File: imglab/lab2sol_osvszeta.png Graphic file (type png)
+
+<use imglab/lab2sol_osvszeta.png>
+Package pdftex.def Info: imglab/lab2sol_osvszeta.png used on input line 176.
+(pdftex.def)             Requested size: 360.0pt x 196.82156pt.
+ [7 <./imglab/lab2sol_ex2a.png> <./imglab/lab2sol_zetavsk.png>]
+<imglab/lab2sol_stvszeta.png, id=42, 1138.2525pt x 622.325pt>
+File: imglab/lab2sol_stvszeta.png Graphic file (type png)
+
+<use imglab/lab2sol_stvszeta.png>
+Package pdftex.def Info: imglab/lab2sol_stvszeta.png used on input line 183.
+(pdftex.def)             Requested size: 360.0pt x 196.82156pt.
+ [8 <./imglab/lab2sol_osvszeta.png> <./imglab/lab2sol_stvszeta.png>] [9] (./EEC
+S305_Lab2solutions.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
 
  ) 
 Here is how much of TeX's memory you used:
- 2499 strings out of 493304
- 33596 string characters out of 6139871
- 95138 words of memory out of 5000000
- 5917 multiletter control sequences out of 15000+600000
+ 2583 strings out of 493304
+ 34986 string characters out of 6139871
+ 95548 words of memory out of 5000000
+ 5993 multiletter control sequences out of 15000+600000
  9975 words of font info for 38 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,8n,24p,423b,244s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,8n,24p,629b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on EECS305_Lab2solutions.pdf (5 pages, 457579 bytes).
+/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmtt10.pfb>
+Output written on EECS305_Lab2solutions.pdf (9 pages, 547469 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
- 33 compressed objects within 1 object stream
+ 76 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 31 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
