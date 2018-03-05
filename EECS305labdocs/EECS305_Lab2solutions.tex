@@ -1,0 +1,149 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{graphicx}
+\author{Jordan Murray}
+\title{EECS305 Lab5}
+\begin{document}
+\begin{center}
+\fontsize{24}{12}\selectfont
+\textbf{Solutions For Lab 2:}
+
+\textbf{ Model Identification and Transient Response of a DC Servo Motor System }
+\end{center}
+
+\section{Procedure}
+\textbf{3.1 Model Identification}
+The Simulink model Lab2\_Identification was run. A unit step function was given as an input to the DC model block producing the following trajectories:
+
+\begin{figure}[here]
+\includegraphics[width=\textwidth]{imglab/lab2sol_identification1.png}
+\caption{Typical impulse response for the DCservo model. Omega in blue.}
+\label{fig:id1}
+\end{figure}
+
+Our model of the DC servo system has an input-speed transfer function
+\begin{equation}
+	\Omega \left( s \right) = \frac{K_{s}}{\tau s + 1}
+\end{equation}
+and input-position transfer function
+\begin{equation}
+	\Theta \left( s \right) = \frac{K_{s}}{s \left( \tau s + 1 \right)}
+\end{equation}
+
+ To determine $K_{s}$, we find the steady state value of the step response. By inspection, it seems to be about.1. Noise makes a more precise estimate difficult. We can do some processing to come up with a better estimate. The model created a data structure in the workspace containing the scope data. We can take an a average over the latter part of the data to estimate the steady-state value:
+ 
+\begin{verbatim}
+omega = Lab2_Identificationdata.signals(2).values;
+avgomega = omega(200:length(omega));
+ks = mean(avgomega)
+\end{verbatim}
+
+which gives a steady state value of about .0993 in this case. Since our input was a unit step function, our estimate for $K_{s}$ is .0933/1 = .0993. Next, we attempt to estimate $\tau$. First, we find the time at which the response is 63.2\% of its final value, or .0628. We can do this by inspection using the scope's magnification cursor:
+
+\begin{figure}[here]
+\includegraphics[width=\textwidth]{imglab/lab2sol_identification2white.png}
+\caption{Zooming in on the omega trajectory near the point at which it is equal to 63.2\% of the final value. }
+\label{fig:id2}
+\end{figure}
+
+This time is about 1.265, .265 seconds after the application of the step function. This gives us a value of .265 for $\tau$.
+
+In the Simulink model Lab2\_Comparison, we update the transfer function block according the parameters determined for our model of the DC servo system.
+
+\begin{figure}[here]
+\includegraphics[width=\textwidth]{imglab/lab2sol_comp1.png}
+\caption{Lab2\_Comparison.slx with updated model transfer function block. }
+\label{fig:comp1}
+\end{figure}
+
+We compare the velocity trajectory of our model to that of the DC servo system. 
+
+\begin{figure}[here]
+\includegraphics[width=\textwidth]{imglab/lab2sol_comp2.png}
+\caption{Omega trajectory comparison. Our model in red and the DC servo system in blue. }
+\label{fig:comp2}
+\end{figure}
+
+Our model matches the behavior of the system reasonably well, though our model doesn't seem to completely describe the dynamics of the system. Though the curves intersect around one time constant, the model curve is substantially higher before and substantially lower after, until both curves settle at the final value.
+
+\begin{figure}[here]
+\includegraphics[width=\textwidth]{imglab/lab2sol_mismatch.png}
+\caption{The difference in omega trajectories between our model and the system. While not very large, the difference during the rise is greater than can be explained by noise alone. }
+\label{fig:comp3}
+\end{figure}
+
+It doesn't seem that we can do much better by tweaking parameters, a shorter time constant may reduce error after the curves intersect  at the cost of more error before and vice-versa for a longer time constant. We will stick with the paramter values determined.
+
+\textbf{3.2 Transient Response}
+
+	The model Lab2\_Transient contains 7 DC servo systems each with a different position feedback gain. We run the model, producing a plot with a family of position trajectories:
+	
+\begin{figure}[here]
+\includegraphics[width=\textwidth]{imglab/lab2sol_transfam.png}
+\caption{The family of curves produced from the set of feedback gains (1,2,4,8,16,32,64) with their respective colors yellow, blue, red, green, purple, cyan, and magenta }
+\label{fig:transfam}
+\end{figure}
+
+
+
+\section{Exercises}
+\begin{enumerate}
+
+\item From the data of section 3.2, we are able to fill the following table:
+
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+Gain & Poles & \%overshoot & $\zeta$ & $\omega_{n}$ & $T_{settling}$ & $T_{peak}$ & $T_{r}$ \\ \hline
+1 & -3.67, -1.02,1 & 0 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
+2 & -3.56,-.2103 & 0 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
+4 & -3.32, -.451 & 0 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
+8 & -2.64, -1.14 & 0 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
+16 & -1.89 $\pm$ 1.56i & 1 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
+32 & -1.89 $\pm$ 2.90i & 9 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
+64 & -1.89 $\pm$ 4.52i & 13 & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad & \qquad \qquad \\ \hline 
+
+\end{tabular}
+\end{center}
+
+The gain values were read from the Simulink model diagram. The poles were calculated from our model transfer function. For a system with transfer function $\Theta(s)$, the closed loop transfer function with error feedback gain K is given by:
+
+\begin{equation}
+	\frac{K\Theta(s)}{1+K\Theta(s)}
+\end{equation}
+
+the following MATLAB script was used to calculate the poles of the closed loop transfer function for each gain.
+
+\begin{verbatim}
+	%define constants
+	ks = .0993;
+	tau = .265;
+	K = [1,2,4,8,16,32,64];
+
+	%create transfer function object
+	s = tf('s');
+	systf = ks/(s*(tau*s + 1));
+
+	%for each gain value
+	for i = 1:length(K)
+		%find the closed loop transfer function
+    	fbsystf = feedback(K(i)*systf,1);
+    	display(['poles for ' num2str(K(i)) ' : '])
+    	%calculate poles for closed loop system
+    	pole(fbsystf)
+	end
+\end{verbatim}
+
+
+The percent overshoot was measured by inspection using the scope.
+
+\end{enumerate}
+
+
+
+\end{document}

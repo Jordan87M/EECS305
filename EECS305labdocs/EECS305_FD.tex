@@ -14,17 +14,17 @@
 \section{OBJECTIVES}
 
 \begin{enumerate}
-\item Frequency domain
+\item Identify the parameters of a system using frequency domain observations.
 
-\item bode plot
+\item Understand the impact of feedback gain on frequency domain behavior.
 
-\item phase margin
+\item Determine the phase and gain margin from bode plots.
 
 \end{enumerate}
 
 
 \section{BASIC KNOWLEDGE}
-In this experiment, we introduce mathematical models for a DC servomechanism and lead-lag compensator design using the root-locus method
+In this experiment, we introduce mathematical models for a DC servomechanism.
 
 \subsection{Background information on DC servo motor system}
 
@@ -191,92 +191,38 @@ G'(s)=\frac{\frac{C_{s}K_{s}}{\tau}}{s^{2} + \frac{s}{\tau} + \frac{K_{1}K_{s}C_
 
 We observe that the transfer function of the closed-loop system, G'(s) is a second order system with one free controller parameter $K_{1}$. Changing the gain $K_{1}$ can be used to alter the transient dynamics of the second order system.
 
-\subsection{Background information on lead-lag compensator design}
-Lead and lag compensators are used quite extensively in control. A lead compensator can increase the stability or speed of response of a system; a lag compensator can reduce (but not eliminate) the steady state error. If improvements in both transient response and steady-state response are desired, then both a lead compensator and a lag compensator may be used simultaneously. Depending on the effect desired, one or more lead and lag compensators may be used in various combinations.
-
-%\subsubsection{Lead compensator}
-
-%\subsubsection{Lag compensator}
 
 \section{EXPERIMENTAL PROCEDURES}
 \subsection{Identify $K_{s}$, $\tau$, $C_{s}$:}
 \begin{enumerate}
-\item You should have identified these parameters of the DC servo model in a previous lab. If you know the values of these parameters you can skip to the lead compensator design section.
+\item You should have identified these parameters of the DC servo model in a previous lab, but now we will attempt to measure them in a different way.
 
-\item Run \textbf{MATLAB} and open the model \textbf{Lab5\_identification.slx}. The \textit{DC servo} block contains a masked model of a DC servo motor. Run the model. A unit step input is applied to the motor winding at t = 1s. Open the scope and look at the angular velocity trace. Determine the steady-state speed of the motor. This is the value of $K_{s}$, the steady-state gain. Determine the time at which the speed reaches 63.2\% of its final value. Find the elapsed time since the step function was applied. This value is the time constant $\tau$.
+\item Run \textbf{MATLAB} and open the model \textbf{LabFD\_OLFreqResponse.slx}. It contains an open loop DC servo model fed by a sinusoidal input.
 
-\item Again using the scope, determine the slope of the asymptote of the angle trace. This is another way of measuring the angular velocity which allows us to determine $C_{s}$ (see Eq. \ref{eq:14}). 
+\item Adjust the frequency of the sinusoidal input block over a range sufficient to capture the interesting features of the system's frequency response.  You might try something like the following: begin with frequencies of {.1,.2,.5,1,2,5,10,20,..} until the asymptotic phase values are approached, then try more points as necessary near the cutoff frequency. Measure and record the amplitude and relative (to the input signal) phase of both the \textbf{speed and position} trajectories for each frequency.
+
+\item $K_{s}$ can be determined from the initial value of the speed transfer function. The inverse of $\tau$ can be determined by finding the frequency of the position phase response inflection point. $C_{s}$ can be calculated from the parameters already determined and one of the position transfer function data points. Alternatively, you could  use a curve fitting tool to find the parameters. How do the parameter values obtained compare to those determined from time domain measurements?
+
+\item Compare the step responses of the transfer functions with experimentally determined parameters (both those obtained from time domain measurements and those obtained from frequency domain measurements) to that of the DC servo block. Which set of parameter values result in a better model? Why do you think this is?
+
+\item Make a Bode plot of the transfer function. Superimpose the data points you collected.
+
+\item Determine the gain and phase margins for this transfer function.
+
 \end{enumerate}
 
-\subsection{Lead Compensator Design} \label{ss:specs}
+
+
+\subsection{Frequency Domain Effects of Feedback}
 \begin{enumerate}
-\item From \textbf{3.1} we know system parameters $K_{s}$, $\tau$, $C_{s}$, with which we can estimate the transfer function of the motor and design a controller accordingly.
+\item Open the model \textbf{LabFD\_CLFreqResponse.slx}. It contains a closed loop DC servo model with a sinusoidal input and position feedback. The feedback gain has been placed in the forward path.
 
-\item The transient response specifications are as follows:
-\begin{enumerate}
-\item Maximum percentage overshoot less than 5%
-\item Settling time (2\% band) less than 1 second
-\end{enumerate}
+\item Calculate the closed-loop transfer function of this system with unity gain using your estimated parameter values for the open loop transfer function (you can use the parameters determined in this lab or those determined previously, whichever seem to be more accurate).
 
-Calculate the corresponding restrictions on the values of the damping ratio $\zeta$ and the natural frequency $\omega_{n}$.
+\item Make one or more Bode plot(s) showing curves for the closed-loop input-position transfer functions resulting from the following gain constants being used in the forward path on position feedback: {.1, 1, 10, 100, 1000}.  Give an expression for the closed-loop transfer function and the phase and gain margins for each.
 
+\item Repeat the previous step for the input-speed transfer function with speed feedback instead of position feedback.
 
-\item Determine our desired closed loop dominant pole locations from the $\zeta$ and $\omega_{n}$ calculated in the previous step. You might try selecting the points at the intersections of the constraining curves from the previous step.
-
-\item  The open loop system consisting of the controller and plant has 1 zero and 3 poles. The open loop plant poles are fixed at zero and 1/$\tau$. The compensator pole and zero must be chosen so that the root locus intersects the desired pole location. The feedback gain associated with this point on the root locus must then be determined. \textit{You will have to show this work in your report.}
-
-Suggested procedure:
-\begin{enumerate}
-\item Find the real axis projection of the desired pole location.
-\item \label{step:zeropos} Place the controller zero at or to the left of this point on the real axis.
-\item Determine where on the real axis the controller pole must be placed using the \textit{angle criterion}. Remember that a lead compensator has its pole to the left of its zero.
-\item If no valid angle can be found, go back to step \ref{step:zeropos} and choose a different zero location.
-\item Find the feedback gain. You might use the \textit{magnitude criterion} or the matlab command rlocfind(tf). 
-\end{enumerate}
-
-\item Record the zero, pole, and gain values.
-\end{enumerate}
-
-%\subsection{Lag Compensator Design}
-%We want a lag compensator that will affect our transient response as little as possible, but will increase steady-state gain. As such, we want our pole and zero to very close to each other (consider the angle and magnitude criteria), but we also want the ratio of zero to pole to be large enough to achieve the desired steady-state gain. Both  of these requirements can be achieved if we place the zero and pole for the lag compensator near the origin. 
-
-%Suggested procedure:
-%\begin{enumerate}
-%\item Place the zero to the right of the real projection of the lead compensated system's closed loop pole by a factor of 50-100.
-%\end{enumerate}
-
-\subsection{Study the transient response of the servo motor system with or without lead-lag compensator} \label{ss:transient}
-Part 1:
-\begin{enumerate}
-\item Open the Simulink model \textbf{Lab5\_ConstantFeedback.slx}, which contains our servo model with fixed gain feedback. Set the gain to unity to start with.
-\item Run the simulation. How long does it take for the angle of the motor to settle within about 2\% of the reference?
-\item Increase the gain and improve on the performance. What is the shortest settling time you can obtain with a constant feedback that meets our overshoot requirements? You might use MATLAB's rlocus() to plot the root locus, sgrid() to get the boundary associated with our zeta constraint, and rlocfind() to get the gain associated with your desired closed loop pole locations.
-\item Find the scope data output in the Matlab workspace and save it as a .mat file using the save command.
-\end{enumerate}
-
-Part 2:
-\begin{enumerate}
-\item Open the Simulink model \textbf{Lab5\_Lead.slx}, which contains our servo model with a lead compensator transfer function in the feedback path.
-\item Modify the lead compensator transfer function to match the zero, pole, and gain values previously determined. 
-\item Calculate the steady-state gain of the lead compensator and scale our reference signal accordingly. The reference we are providing in this configuration corresponds to the desired value of the compensator output, not the desired state measurement.
-\item Run the simulation. Does the system trajectory meet the specifications? The servo model block includes a maximum control effort, which constrains the rise time. This could be an issue for some choices of pole location.
-\item Find the scope data output in the Matlab workspace and save it as a .mat file using the save command.
-\end{enumerate}
-
-Part 3:
-\begin{enumerate}
-\item Open the Simulink model \textbf{Lab5\_Lag.slx}, which contains our servo model with a lag compensator transfer function in the forward path.
-\item Note how long it takes to settle.
-\item Find the scope data output in the Matlab workspace and save it as a .mat file.
-\end{enumerate}
-
-\subsection{Lead vs Lead-Lag compensation}
-\begin{enumerate}
-\item Open the Simulink model \textbf{Lab5\_LeadLag.slx}. This model is intended to demonstrate an application for a lag compensator. The steady state error in theta for the servo is zero for a step input since the theta-input transfer function is a type 1 system. However, the steady state error for a lead-compensated system is not zero for a ramp input. A lag compensator can reduce this error. 
-\item Modify the lead compensator transfer function blocks to match the zero, pole, and gain values previously determined.
-\item Run the simulation.
-\item Confirm that the transient response of the step-input system is almost the same as before the addition of the lag compensator.
-\item Look at the ramp input systems. Compare the error of the lead compensated system to that of the lead-lag compensated system.
 \end{enumerate}
 
 

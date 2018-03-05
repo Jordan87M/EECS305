@@ -56,7 +56,8 @@ else
 end
 
 s = tf('s');
-systf = ks/(s*(tau*s + 1));
+systf = cs*ks/(s*(tau*s + 1));
+systf2 = ks/(tau*s + 1);
 
 %performance requirements
 M = maxovershoot/100;
@@ -107,4 +108,13 @@ for i = 1:length(lambda1)
     k1(i) = lambda1(i)*lambda2(i)*tau/(ks*cs);
     k2(i) = ((lambda1(i) + lambda2(i))*tau + 1)/ks;
 end
+
+
+display('Okay, here are the controller parameters:')
+display(['lead controller zero location: ' num2str(leadzero)])
+display(['lead controller pole location: ' num2str(leadpole)])
+display(['lead controller gain: ' num2str(G)])
+
+display(['if the controller is in the feedback path, scale the reference by: ' num2str(inputscaling)])
+
 
