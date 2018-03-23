@@ -113,7 +113,7 @@ Gain & Poles & \%overshoot & $\zeta$ & $\omega_{n}$ & $T_{settling}$ & $T_{peak}
 \end{tabular}
 \end{center}
 
-The gain values were read from the Simulink model diagram. The poles were calculated from our model transfer function. For a system with transfer function $\Theta(s)$, the closed loop transfer function with error feedback gain K is given by:
+The gain values were read from the Simulink model diagram. The poles were calculated from our model transfer function. For a system with transfer function $\Theta(s)$, the closed loop transfer function with error feedback gain $K_{1}$ is given by:
 
 \begin{equation}
 	\frac{K\Theta(s)}{1+K\Theta(s)}
@@ -144,19 +144,35 @@ the following MATLAB script was used to calculate the poles of the closed loop t
 
 The percent overshoot was measured by inspection using the scope.
 
- For a general second order system:
+ Our second order transfer function has the form:
 
 \begin{equation}
-	G(S) = \frac{\omega_{n}^{2}}{s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}}
+	G(s) = \frac{\omega_{n}^{2}}{s^{2}+2\zeta\omega_{n}s+\omega_{n}^{2}}
 \end{equation}
 
-The preceding script MATLAB script gives the closed loop transfer function for each $K_{1}$. From this and the relation above, we can calculate $\omega_{n}$ and then $\zeta$ for each $K_{1}$.
+From $\frac{K\Theta(s)}{1+K\Theta(s)}$ we also have:
+
+\begin{equation}
+	G(s) = \frac{\frac{K_{1}K_{s}}{\tau}}{s^{2}+\frac{1}{\tau}s+\frac{K_{1}K_{s}}{\tau}}
+\end{equation}
 
 
-$T_{settling}$ is the elapsed time between settling within the 2\% band and the application of the input. $T_{peak}$ is the elapsed time between attainment of the maximum value and application of the input. $T_{peak}$ is only defined for underdamped systems. $T_{r}$ is the rise time, defined for underdamped systems as the elapsed time between first attainment of the target value and the application of the input, and for critically or overdamped systems as $T_{r1}$, the elapsed time between attainment of the 90\% and 10\% values. All of these values were determined by inspection using the scope.
+leading to the following formulae for $\zeta$ and $\omega_{n}$:
+\begin{equation}
+	\omega_{n} = \sqrt{\frac{K_{1}K_{s}}{\tau}}
+\end{equation}
+
+\begin{equation}
+	\zeta = \frac{1}{2\sqrt{\tau K_{1} K_{s}}}
+\end{equation}
 
 
-\item (a) Poles plotted in the s-plane for all values of K
+$T_{settling}$ is the elapsed time between settling within the 2\% band and the application of the input. $T_{peak}$ is the elapsed time between attainment of the maximum value and application of the input. $T_{peak}$ is only defined for underdamped systems. $T_{r}$ is the rise time, defined for underdamped systems as the elapsed time between first attainment of the target value and the application of the input, and for critically or overdamped systems as $T_{r1}$, the elapsed time between attainment of the 90\% and 10\% values. All of these values were determined by inspection using the scope. 
+
+We also calculated the settling times using the second order model, taking the 2\%s settling time to be about 4 time constants. For an underdamped system the time constant is $\frac{1}{\zeta \omega_{n}}$ and for an overdamped system it is approximately the inverse of the absolute value of the closed loop system's dominant pole.
+
+
+\item \textbf{(a) Poles plotted in the s-plane for all values of K}
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_ex2a.png}
@@ -164,34 +180,36 @@ $T_{settling}$ is the elapsed time between settling within the 2\% band and the 
 \label{fig:ex2a}
 \end{figure}
 
-(b) $\zeta$ plotted vs $K_{1}$.
+\textbf{(b) $\zeta$ plotted vs $K_{1}$}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_zetavsk.png}
 \caption{$\zeta$ vs $K_{1}$. }
 \label{fig:zetavsk}
 \end{figure}
 
-(c) \% overshoot plotted vs $\zeta$
+\textbf{(c) \% overshoot plotted vs $\zeta$}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_osvszeta.png}
-\caption{Overshoot vs. $\zeta$ }
+\caption{Overshoot vs. $\zeta$. Measured values are red stars, values calculated from model are blue circles. }
 \label{fig:osvszeta}
 \end{figure}
 
-(d) settling time vs $\zeta$
+Measured values are significantly lower than predicted from the second order model. This is due to a saturation block in the model that limits the control effort, modelling the supply voltage of the motor driver. Rise time and peak time are also affected by this factor. This supply voltage will probably be increased in future labs. 
+
+\textbf{(d) settling time vs $\zeta$}
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{imglab/lab2sol_stvszeta.png}
-\caption{settling time vs. $\zeta$ }
+\caption{settling time vs. $\zeta$. Measured values are red stars, values calculated from model are blue circles.}
 \label{fig:stvszeta}
 \end{figure}
 
 \item 
 
-(a) Increasing K pulls the closed loop poles from their open loop locations on the real axis toward each other. Where they meet, they diverge parallel to the imaginary axis as K continues to increase.
+\textbf{(a)} Increasing $K_{1}$ pulls the closed loop poles from their open loop locations on the real axis toward each other. Where they meet, they diverge parallel to the imaginary axis as $K_{1}$ continues to increase.
 
-(b) There is no overshoot until a critical value of K is reached, at which point the overshoot increases with K.
+\textbf{(b)} There is no overshoot until a critical value of $K_{1}$ is reached, at which point the overshoot increases with $K_{1}$.
 
-(c) An overdamped system will take a long time to approach its steady state value for small K. The settling time initially decreases with increasing K until a critical value is reached, past which point the underdamped system will experience oscillations that take an increasingly long time to subside below the 2\% threshold.
+\textbf{(c)} For an overdamped system, settling time decreases with increasing $K_{1}$. As the gain increases, the system becomes underdamped and the settling time is fixed. 
 
 \end{enumerate}
 

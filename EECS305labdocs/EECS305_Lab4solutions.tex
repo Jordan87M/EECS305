@@ -1,0 +1,366 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\author{Jordan Murray}
+\title{EECS305 Lab4 Solutions}
+\begin{document}
+\begin{center}
+\fontsize{24}{12}\selectfont
+\textbf{Solution for Lab 4: System Type and Lead-Lag Control of a DC Servo Motor }
+\end{center}
+
+\section{Procedure}
+\textbf{3.1 System Type and Tracking Error}
+
+The Lab4\_SystemType.slx model contains five systems:
+\begin{enumerate}
+	\item step input, position feedback
+	\item ramp input, position feedback
+	\item parabolic input, position feedback
+	\item step input, speed feedback
+	\item ramp input, speed feedback
+\end{enumerate}
+
+The initial feedback gain for all five systems is 10.
+
+For each system, we observe whether or not the reference is tracked, and if not, how the error evolves. We explore the effect of the feedback gain on the error signal.
+\begin{enumerate}
+	\item The step input is tracked with position feedback since the steady state error goes to zero.
+	
+	\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_steppostraj.png}
+	\caption{Position (yellow) tracks the reference (red).}
+	\end{figure}
+	
+	\item The ramp input is not tracked with position feedback. The error approaches a constant value, implying that the speed implied by the slope of the reference is attained by the plant.
+
+	\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_ramppostraj.png}
+	\caption{Position(yellow) does not track the reference (red). However, the speed (blue) eventually matches the speed implied by the slope of the ramp (green). }
+	\end{figure}	
+	
+	The effect of increasing the gain is illustrated by the following:
+	
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_rampposkfam.png}
+		\caption{Family of position trajectories for the following values of K: 10 (blue), 20 (green), 40 (magenta), 80 (cyan), 100 (black).}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_rampposerr.png}
+		\caption{Family of position errors for the same K values.}	
+	\end{subfigure}
+\end{figure}
+	
+	Increasing the feedback gain reduces the limiting value of the position error, but does not completely eliminate it.
+	
+	\item The parabolic input is not tracked with position feedback. Position error increases linearly in time.
+	
+	\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_parapostraj.png}
+	\caption{Position(yellow) does not track the reference (red). The speed implied by the derivative of the input eventually differs from the speed (blue) by a constant after}
+	\end{figure}	
+	
+	The effect of increasing the gain is illustrated by the following:
+	
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_paraposkfam.png}
+		\caption{A family of position curves for the same K values.}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_paraposerr.png}
+		\caption{A family of positoin error curves for the same K values. The downturn at the right is due to the maximum speed of the servo being attained.}	
+	\end{subfigure}
+\end{figure}
+
+Increasing the feedback gain can reduce the tracking error and decrease the constant rate at which the error increases, but it is not completely eliminated. The supply voltage and armature resistance of the motor limit the motor speed. After this speed is reached, the error will increase quadratically instead of linearly.
+
+	\item The step input is not tracked with speed feedback. The error approaches a constant value.
+	
+	\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_stepspeedtraj.png}
+	\caption{Speed (blue) does not track the reference (red). The difference approaches a constant value.}
+	\end{figure}	
+	
+		The effect of increasing the gain is illustrated by the following:
+	
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{imglab/lab4sol_stepspeedkfam.png}
+		\caption{Family of speed curves for the same values of K.}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{imglab/lab4sol_stepspeederr.png}
+		\caption{Family of speed error curves for the same values of K. }	
+	\end{subfigure}
+\end{figure}
+
+Increasing K reduces the steady state speed error, but does not eliminate it.
+	
+	\item The ramp input is not tracked with speed feedback. The error increases linearly in time.
+	
+	\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_rampspeedtraj.png}
+	\caption{The speed curve (blue) does not track the reference (red). The error increases linearly with time.}
+	\end{figure}	
+	
+	The effect of increasing the gain is illustrated by the following:
+	
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_rampspeedkfam.png}
+		\caption{A family of speed curves for the same values of K.}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_rampspeederr.png}
+		\caption{A family of speed error curves for the same values of K.}	
+	\end{subfigure}
+\end{figure}
+
+Increasing the feedback gain reduces the steady state error and the rate at which it increases, but does not completely eliminate it.
+	
+\end{enumerate}
+
+\textbf{3.2 Identify $K_{s}$ and $\tau$}
+We run the Simulink model Lab4\_Identification.slx and estimate steady state value of the speed to be .1, implying a $K_{s}$ of .1. We then estimate the time at which the output reaches 63.2\% of its steady state value, or .0632, to be 1.162, implying a $\tau$ of .162 since the step input is applied at t=1.
+
+\textbf{3.3 Lead Compensator Design}
+The specifications for our controller are:
+\begin{enumerate}
+\item Overshoot less than 5\%.
+\item 2\% band settling time less than 1.2 seconds
+\end{enumerate}
+
+We first determine the damping ratio $\zeta$ and natural frequency $\omega_{n}$ corresponding to these constraints.
+
+From the formula for maximum overshoot we have:
+\begin{equation}
+	\zeta = \sqrt{\frac{\ln (M)^{2}}{\pi^{2} + \ln (M)^{2}}}
+\end{equation}
+where M is the maximum overshoot (.05).
+
+From the formula for the envelope of the oscillations, we have:
+\begin{equation}
+	\omega_{n} = \frac{1}{\zeta t_{s}} \log \left( \frac{1}{\epsilon \sqrt{1 - \zeta^{2}}} \right)
+\end{equation}
+alternatively, we could use the less precise formula:
+\begin{equation}
+	\omega_{n} = \frac{4}{\zeta t_{s}}
+\end{equation}
+where $t_{s}$ is the settling time for the 2\% band (1.2).
+
+We will use the first formula for the natural frequency, yielding $\omega_{n} = 5.1144$ and $\zeta = .6901$. We now determine the desired location of our dominant closed loop poles according to the formula: 
+
+\begin{equation}
+	s = \sigma + j \omega = \zeta \omega_{n} + j \omega_{n} \sqrt{1 - \zeta^{2}}
+\end{equation}
+
+which yields pole locations of $ -4.2354 \pm j 4.4416$. 
+
+Now we will determine the position of the lead controller pole and zero such that the desired closed loop pole locations are on the root locus. The angle condition tells us that
+
+\begin{equation}
+	\angle G(s)H(s) = \pi
+\end{equation}
+
+which implies
+
+\begin{equation}
+	\angle z_{lead} + \angle p_{lead} = - \pi + \angle z_{ol1} + \angle z_{ol2}
+\end{equation}
+
+indicating that the sum of the lead controller zero and pole angles must be .3503 radians. Therefore, we must place the zero far enough to the left of the real axis projection of the closed loop pole location that $\angle p_{lead}$ is less than zero, but not so far to the left that the pole angle would have to be larger than the zero angle. We choose to place the zero at -20.7033, at an angle of .2634 radians, leaving .0869 radians for the lead controller pole angle. This corresponds to a pole location of -55.2361.
+
+We now use the gain condition to find the appropriate gain for our lead controller. 
+\begin{equation}
+	K \frac{\lvert s + z_{1} \rvert \lvert s + z_{2} \rvert \cdots \lvert s + z_{m} \rvert }{\lvert s + p_{1} \rvert \lvert s + p_{2} \rvert \cdots \lvert s + p_{n} \rvert} = 1
+\end{equation}
+ 
+ solving for K,  we get 89.2629. 
+ 
+ 
+\begin{figure}[h!]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_leadpoles.png}
+	\caption{The open loop poles and zeros in blue and the dominant closed loop poles in red on the s plane with damping ratio and natural frequency constraints.}
+\end{figure}
+
+
+\textbf{3.4 Transient Response}
+
+\textbf{Part 1: Constant Feedback}
+
+The Simulink model Lab4\_ConstantFeedback.slx contains a DC servo model with constant feedback gain fed with a unit step input at t=1. We are to find the feedback gain which produces the shortest possible settling time while meeting the same 5\% overshoot restriction as the lead controller we designed. We use Matlab's rlocus() function to plot our DC servo transfer function's root locus. The function sgrid($\zeta$,$\omega_{n}$) with a $\zeta$ of .6901 plots the boundary of the region in the s plane that our closed loop poles may occupy. The function rlocfind() is then used to find a range of feedback gains corresponding to points on the root locus between the divergence from the real axis and the damping ratio boundary. Feedback gains over this region range roughly from 16 to 32. A gain of 32 results in a settling time of about 1.15s with an overshoot of about 4\%.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_constanttraj.png}
+		\caption{Position trajectory for constant feedback with K = 32.}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_constanttrajclose.png}
+		\caption{Closeup view of peak of the same.}	
+	\end{subfigure}
+\end{figure}
+
+
+
+\textbf{Part 2: Lead Compensation}
+
+To verify the performance of the lead controller we designed, we open Lab4\_Lead.slx and change the lead controller transfer function block to reflect the zero and pole calculated for the controller, and the feedback gain block to K. The input gain block is set to 33.4571, equal to the steady state gain of the feedback path so that the final value will be match the reference.  We could have avoided this requirement by placing the controller gain in the forward path.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtraj.png}
+		\caption{Position vs. time with lead controller.}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtrajverification.png}
+		\caption{Close up of position trajectory.}	
+	\end{subfigure}
+\end{figure}
+
+\textbf{Part 3: Lag Compensation}
+
+\textbf{3.5 Lead vs Lead-Lag Compensation}
+
+
+\section{Exercises}
+
+\begin{enumerate}
+\item \textbf{System Type and Tracking Error}
+From the final value theorem we know:
+\begin{equation}
+	\lim_{t \to \infty} f(t) = \lim_{s \to 0}sF(s)
+\end{equation}
+
+or more specifically, in our case:
+\begin{equation}
+	\lim_{t \to \infty} f(t) = \lim_{s \to 0}sU(s)G^{\prime}(s)
+\end{equation}
+
+where $G^{\prime}(s)$ is the closed loop transfer function for G(s), the input to position transfer function for the servo system.
+
+For a position feedback system with a step input, we have:
+
+\begin{equation}
+	\lim_{t \to \infty} f(t) = \lim_{s \to 0}s\frac{R}{s}\frac{K_{s}K_{1}}{\tau s^{2} + s + K_{1}K_{s}} = R
+\end{equation}
+
+therefore, the steady-state value is equal to the reference value.
+
+For a position feedback system with a ramp input, we have:
+\begin{equation}
+	\lim_{t \to \infty} f(t) = \lim_{s \to 0}s\frac{1}{s^{2}}\frac{K_{s}K_{1}}{\tau s^{2} + s + K_{1}K_{s}} = \infty
+\end{equation}
+
+As expected, the position trajectory has no steady state value.
+
+Using the Final Value Theorem we can find the steady state error:
+\begin{equation}
+	\lim_{t \to \infty} e(t) 
+	= \lim_{s \to 0}s\frac{1}{s^{2}}(1 - \frac{K_{s}K_{1}}{\tau s^{2} + s + K_{1}K_{s}})
+\end{equation}
+\begin{equation}	
+	 = \lim_{s \to 0}\frac{1}{s}\frac{\tau s^{2} + s}{\tau s^{2} + s + K_{1}K_{s}} 
+\end{equation}
+\begin{equation}	
+	= \lim_{s \to 0}\frac{\tau s^{2} + s}{\tau s^{3} + s^{2} + K_{1}K_{s}s} 
+\end{equation}
+
+\begin{equation}
+	= \frac{1}{K_{1}K_{s}}
+\end{equation}
+
+which confirms our suspicion that there is no value of $K_{1}$ which will completely eliminate the steady-state error.
+
+For a position feedback system with a parabolic input, we can see from the foregoing that the limit of the error will be infinity:
+
+\begin{equation}
+	\lim_{t \to \infty} e(t) 
+	= \lim_{s \to 0}s\frac{1}{s^{3}}(1 - \frac{K_{s}K_{1}}{\tau s^{2} + s + K_{1}K_{s}})
+\end{equation}
+with the extra s in the denominator, we end up with:
+
+\begin{equation}
+	\lim_{s \to 0}\frac{1}{2K_{1}K_{s}s + O(s^{2})} = \infty
+\end{equation}
+
+
+However, if we look instead at the final value of the derivative of the error, we cancel this extra s and show that the derivative of the error has a constant value, or that the error increases linearly in time.
+
+For speed feedback systems, we must use the input to speed transfer function instead.
+
+For a speed feedback system with a step reference, we have the final value:
+\begin{equation}
+	\lim_{t \to \infty} f(t) = \lim_{s \to 0}s\frac{R}{s}\frac{K_{s}K_{1}}{\tau s + s + K_{1}K_{s} + 1} = R \frac{K_{s}K_{1}}{K_{s}K_{1}+1}
+\end{equation}
+and a steady state error of
+
+\begin{equation}
+	\frac{R}{K_{s}K_{1} + 1}
+\end{equation}
+
+For a speed feedback system with a ramp reference, we have an additional s in the denominator, making the error infinite
+
+\begin{equation}
+	\lim_{t \to \infty} e(t) 
+	= \lim_{s \to 0}s\frac{1}{s^{2}}(1 - \frac{K_{s}K_{1}}{\tau s^ +  K_{1}K_{s} + 1})
+\end{equation}
+
+\begin{equation}
+	= \lim_{s \to 0}\frac{1}{s}\frac{\tau s + 1}{\tau s +  K_{1}K_{s} + 1} = \infty
+\end{equation}
+
+However, we can again cancel this extra s by considering the derivative of the error, showing that the error also increases linearly in this case. 
+
+Writing an open loop transfer function G(s) as $\frac{N(s)}{D(s)}$, we can see that for the closed loop transfer function $G^{\prime}(s) = \frac{K_{1}G(s)}{1+K_{1}G(s)}$ we will have 
+\begin{equation}
+	\frac{K_{1}N(s)}{D(s) + K_{1}N(s)}
+\end{equation}
+
+In calculating the steady state error using the Final Value Theorem, it is necessary to calculate 1-$G^{\prime}(s)$, which is
+\begin{equation}\label{eq:typederiv}
+	\frac{D(s)}{D(s) + K_{1}N(s)}
+\end{equation}
+
+The steady state error is then
+\begin{equation}
+	\lim_{s \to 0}sU(s)\frac{D(s)}{D(s) + K_{1}N(s)}
+\end{equation}
+
+This expression will be finite if the lowest order (in s) term of D(s) is high enough order that the by the time the derivatives required by repeated application of L'Hospital's Rule generate a constant term in D(s), there is at least one term without an s in the denominator of (\ref{eq:typederiv}). Therefore, systems with more powers of s to be factored out of the denominator of their open loop transfer functions will have finite errors for U(s) with a correspondingly greater number of integrators and will track references with fewer integrators than that number for which they have finite error. This explains why position feedback is able to track an input with one more integrator than speed feedback for the servo system. 
+
+Differentiating the expression for steady state error offsets an integral in the reference signal, shows that adding an integrator in the input has the effect of adding an integrator to the error signal for systems that do not track the reference. 
+
+The type of the system is determined by the powers of s which can be factored out of the open loop transfer function denominator.
+
+
+\end{enumerate}
+
+
+\end{document}

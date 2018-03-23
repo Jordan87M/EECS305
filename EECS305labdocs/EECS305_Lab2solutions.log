@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.17)  5 MAR 2018 09:52
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.17)  7 MAR 2018 03:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -296,36 +296,37 @@ Overfull \hbox (30.52747pt too wide) in paragraph at lines 102--114
  [] 
  []
 
-[5 <./imglab/lab2sol_transfam.png>]
-<imglab/lab2sol_ex2a.png, id=31, 1138.2525pt x 622.325pt>
+[5 <./imglab/lab2sol_transfam.png>] [6]
+<imglab/lab2sol_ex2a.png, id=38, 1138.2525pt x 622.325pt>
 File: imglab/lab2sol_ex2a.png Graphic file (type png)
 
 <use imglab/lab2sol_ex2a.png>
-Package pdftex.def Info: imglab/lab2sol_ex2a.png used on input line 162.
+Package pdftex.def Info: imglab/lab2sol_ex2a.png used on input line 178.
 (pdftex.def)             Requested size: 360.0pt x 196.82156pt.
- [6]
-<imglab/lab2sol_zetavsk.png, id=36, 1138.2525pt x 622.325pt>
+
+<imglab/lab2sol_zetavsk.png, id=39, 1138.2525pt x 622.325pt>
 File: imglab/lab2sol_zetavsk.png Graphic file (type png)
 
 <use imglab/lab2sol_zetavsk.png>
-Package pdftex.def Info: imglab/lab2sol_zetavsk.png used on input line 169.
+Package pdftex.def Info: imglab/lab2sol_zetavsk.png used on input line 185.
 (pdftex.def)             Requested size: 360.0pt x 196.82156pt.
-
-<imglab/lab2sol_osvszeta.png, id=37, 1138.2525pt x 622.325pt>
+ [7 <./imglab/lab2sol_ex2a.png>]
+<imglab/lab2sol_osvszeta.png, id=44, 1138.2525pt x 622.325pt>
 File: imglab/lab2sol_osvszeta.png Graphic file (type png)
 
 <use imglab/lab2sol_osvszeta.png>
-Package pdftex.def Info: imglab/lab2sol_osvszeta.png used on input line 176.
+Package pdftex.def Info: imglab/lab2sol_osvszeta.png used on input line 192.
 (pdftex.def)             Requested size: 360.0pt x 196.82156pt.
- [7 <./imglab/lab2sol_ex2a.png> <./imglab/lab2sol_zetavsk.png>]
-<imglab/lab2sol_stvszeta.png, id=42, 1138.2525pt x 622.325pt>
+
+<imglab/lab2sol_stvszeta.png, id=45, 1138.2525pt x 622.325pt>
 File: imglab/lab2sol_stvszeta.png Graphic file (type png)
 
 <use imglab/lab2sol_stvszeta.png>
-Package pdftex.def Info: imglab/lab2sol_stvszeta.png used on input line 183.
+Package pdftex.def Info: imglab/lab2sol_stvszeta.png used on input line 201.
 (pdftex.def)             Requested size: 360.0pt x 196.82156pt.
- [8 <./imglab/lab2sol_osvszeta.png> <./imglab/lab2sol_stvszeta.png>] [9] (./EEC
-S305_Lab2solutions.aux)
+ [8 <./imglab/lab2sol_zetavsk.png> <./imglab/lab2sol_osvszeta.png>] [9 <./imgla
+b/lab2sol_stvszeta.png>]
+(./EECS305_Lab2solutions.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
@@ -338,19 +339,22 @@ Here is how much of TeX's memory you used:
  5993 multiletter control sequences out of 15000+600000
  9975 words of font info for 38 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,8n,24p,629b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,8n,24p,630b,325s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmtt10.pfb>
-Output written on EECS305_Lab2solutions.pdf (9 pages, 547469 bytes).
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+t10.pfb>
+Output written on EECS305_Lab2solutions.pdf (9 pages, 576673 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
- 46 compressed objects within 1 object stream
+ 88 PDF objects out of 1000 (max. 8388607)
+ 55 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
