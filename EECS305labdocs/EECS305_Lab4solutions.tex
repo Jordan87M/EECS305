@@ -27,32 +27,32 @@ The Lab4\_SystemType.slx model contains five systems:
 	\item ramp input, speed feedback
 \end{enumerate}
 
-The initial feedback gain for all five systems is 10.
+The initial feedback gain for all five systems is 1.
 
 For each system, we observe whether or not the reference is tracked, and if not, how the error evolves. We explore the effect of the feedback gain on the error signal.
 \begin{enumerate}
 	\item The step input is tracked with position feedback since the steady state error goes to zero.
 	
-	\begin{figure}[h!]
+	\begin{figure}[!htbp]
 	\includegraphics[width=\textwidth]{imglab/lab4sol_steppostraj.png}
 	\caption{Position (yellow) tracks the reference (red).}
 	\end{figure}
 	
 	\item The ramp input is not tracked with position feedback. The error approaches a constant value, implying that the speed implied by the slope of the reference is attained by the plant.
 
-	\begin{figure}[h!]
+	\begin{figure}[!htbp]
 	\includegraphics[width=\textwidth]{imglab/lab4sol_ramppostraj.png}
 	\caption{Position(yellow) does not track the reference (red). However, the speed (blue) eventually matches the speed implied by the slope of the ramp (green). }
 	\end{figure}	
 	
 	The effect of increasing the gain is illustrated by the following:
 	
-\begin{figure}[h!]
+\begin{figure}[!htbp]
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
 		\includegraphics[width = \textwidth]{imglab/lab4sol_rampposkfam.png}
-		\caption{Family of position trajectories for the following values of K: 10 (blue), 20 (green), 40 (magenta), 80 (cyan), 100 (black).}
+		\caption{Family of position trajectories for the following values of K: .25, .5, 1, 2, 4, 8.}
 	\end{subfigure}%	
 	\begin{subfigure}{.5\textwidth}
 		\centering
@@ -65,14 +65,14 @@ For each system, we observe whether or not the reference is tracked, and if not,
 	
 	\item The parabolic input is not tracked with position feedback. Position error increases linearly in time.
 	
-	\begin{figure}[h!]
+	\begin{figure}[!htbp]
 	\includegraphics[width=\textwidth]{imglab/lab4sol_parapostraj.png}
 	\caption{Position(yellow) does not track the reference (red). The speed implied by the derivative of the input eventually differs from the speed (blue) by a constant after}
 	\end{figure}	
 	
 	The effect of increasing the gain is illustrated by the following:
 	
-\begin{figure}[h!]
+\begin{figure}[!htbp]
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
@@ -82,22 +82,22 @@ For each system, we observe whether or not the reference is tracked, and if not,
 	\begin{subfigure}{.5\textwidth}
 		\centering
 		\includegraphics[width = \textwidth]{imglab/lab4sol_paraposerr.png}
-		\caption{A family of positoin error curves for the same K values. The downturn at the right is due to the maximum speed of the servo being attained.}	
+		\caption{A family of position error curves for the same K values. The downturn at the right is due to the maximum speed of the servo being attained.}	
 	\end{subfigure}
 \end{figure}
 
-Increasing the feedback gain can reduce the tracking error and decrease the constant rate at which the error increases, but it is not completely eliminated. The supply voltage and armature resistance of the motor limit the motor speed. After this speed is reached, the error will increase quadratically instead of linearly.
+Increasing the feedback gain can reduce the tracking error and decrease the constant rate at which the error increases, but it is not completely eliminated. 
 
 	\item The step input is not tracked with speed feedback. The error approaches a constant value.
 	
-	\begin{figure}[h!]
+	\begin{figure}[!htbp]
 	\includegraphics[width=\textwidth]{imglab/lab4sol_stepspeedtraj.png}
 	\caption{Speed (blue) does not track the reference (red). The difference approaches a constant value.}
 	\end{figure}	
 	
 		The effect of increasing the gain is illustrated by the following:
 	
-\begin{figure}[h!]
+\begin{figure}[!htbp]
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
@@ -115,14 +115,14 @@ Increasing K reduces the steady state speed error, but does not eliminate it.
 	
 	\item The ramp input is not tracked with speed feedback. The error increases linearly in time.
 	
-	\begin{figure}[h!]
+	\begin{figure}[!htbp]
 	\includegraphics[width=\textwidth]{imglab/lab4sol_rampspeedtraj.png}
 	\caption{The speed curve (blue) does not track the reference (red). The error increases linearly with time.}
 	\end{figure}	
 	
 	The effect of increasing the gain is illustrated by the following:
 	
-\begin{figure}[h!]
+\begin{figure}[!htbp]
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
@@ -141,13 +141,51 @@ Increasing the feedback gain reduces the steady state error and the rate at whic
 \end{enumerate}
 
 \textbf{3.2 Identify $K_{s}$ and $\tau$}
-We run the Simulink model Lab4\_Identification.slx and estimate steady state value of the speed to be .1, implying a $K_{s}$ of .1. We then estimate the time at which the output reaches 63.2\% of its steady state value, or .0632, to be 1.162, implying a $\tau$ of .162 since the step input is applied at t=1.
 
-\textbf{3.3 Lead Compensator Design}
+\begin{figure}[!htbp]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_identification.png}
+	\caption{Speed trajectory (blue) for a unit step input.}
+\end{figure}
+
+We run the Simulink model Lab4\_Identification.slx which applies a unit step to the open loop system at t=1 and estimate steady state value of the speed to be 1.62, implying a $K_{s}$ of 1.62. We then estimate the time at which the output reaches 63.2\% of its steady state value, or 1.0238, to be 1.254, implying a $\tau$ of .254.
+
+
+\textbf{3.3 Proportional Feedback}
+
+	The Simulink model Lab4\_ProportionalFeedback.slx contains a DC servo model with proportional feedback fed with a unit step input at t=1. We minimize the system's settling time subject to a 5\% limit on maximum overshoot. 	
+	
+	We use Matlab's rlocus() function to plot our DC servo transfer function's root locus. The function sgrid($\zeta$,$\omega_{n}$) with a $\zeta$ of .6901 plots the boundary of the region in the s plane that our closed loop poles may occupy. The function rlocfind() is then used to find a range of feedback gains corresponding to points on the root locus between the divergence from the real axis and the damping ratio boundary. Feedback gains over this region range roughly from .6 to 1.2. A gain of .9 results in a settling time of about 1.65s with an overshoot of about 1\%.
+
+
+\begin{figure}[!htbp]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_constantrloc.png}
+	\caption{The DC servo system's root locus. The markers indicate the pole locations corresponding to a gain of .9.}
+\end{figure}
+
+
+
+\begin{figure}[!htbp]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_constanttraj.png}
+		\caption{Position trajectory for proportional with K = .9.}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_constanttrajclose.png}
+		\caption{Closeup view of peak of the same.}	
+	\end{subfigure}
+\end{figure}
+
+
+
+\textbf{3.4 Lead Compensation}
+
 The specifications for our controller are:
 \begin{enumerate}
 \item Overshoot less than 5\%.
-\item 2\% band settling time less than 1.2 seconds
+\item 2\% band settling time less than .6 seconds
 \end{enumerate}
 
 We first determine the damping ratio $\zeta$ and natural frequency $\omega_{n}$ corresponding to these constraints.
@@ -166,15 +204,15 @@ alternatively, we could use the less precise formula:
 \begin{equation}
 	\omega_{n} = \frac{4}{\zeta t_{s}}
 \end{equation}
-where $t_{s}$ is the settling time for the 2\% band (1.2).
+where $t_{s}$ is the settling time for the 2\% band (.6).
 
-We will use the first formula for the natural frequency, yielding $\omega_{n} = 5.1144$ and $\zeta = .6901$. We now determine the desired location of our dominant closed loop poles according to the formula: 
+We will use the first formula for the natural frequency, yielding $\omega_{n} = 10.2288$ and $\zeta = .6901$. We now determine the desired location of our dominant closed loop poles according to the formula: 
 
 \begin{equation}
 	s = \sigma + j \omega = \zeta \omega_{n} + j \omega_{n} \sqrt{1 - \zeta^{2}}
 \end{equation}
 
-which yields pole locations of $ -4.2354 \pm j 4.4416$. 
+which yields pole locations of $ -7.0590 \pm j 7.4027$. 
 
 Now we will determine the position of the lead controller pole and zero such that the desired closed loop pole locations are on the root locus. The angle condition tells us that
 
@@ -185,68 +223,90 @@ Now we will determine the position of the lead controller pole and zero such tha
 which implies
 
 \begin{equation}
-	\angle z_{lead} + \angle p_{lead} = - \pi + \angle z_{ol1} + \angle z_{ol2}
+	\angle z_{lead} - \angle p_{lead}   =  \pi + \angle p_{ol1} + \angle p_{ol2}
 \end{equation}
 
-indicating that the sum of the lead controller zero and pole angles must be .3503 radians. Therefore, we must place the zero far enough to the left of the real axis projection of the closed loop pole location that $\angle p_{lead}$ is less than zero, but not so far to the left that the pole angle would have to be larger than the zero angle. We choose to place the zero at -20.7033, at an angle of .2634 radians, leaving .0869 radians for the lead controller pole angle. This corresponds to a pole location of -55.2361.
+indicating that the difference between the lead pole angle and zero angle must be 1.1607 radians. In the limit that the lead compensator pole is at $-\infty$, its angle will be zero and the the lead zero angle must be 1.1607, corresponding to -10.2769 on the real axis. This is the farthest left we can place the zero.
+
+ We choose to place the zero at -8.668, at an angle of 1.3568 radians, leaving .1960 radians for the lead controller pole angle. This corresponds to a pole location of -44.3358.
 
 We now use the gain condition to find the appropriate gain for our lead controller. 
 \begin{equation}
 	K \frac{\lvert s + z_{1} \rvert \lvert s + z_{2} \rvert \cdots \lvert s + z_{m} \rvert }{\lvert s + p_{1} \rvert \lvert s + p_{2} \rvert \cdots \lvert s + p_{n} \rvert} = 1
 \end{equation}
+
+In our case,
+
+\begin{equation}
+	K \frac{\lvert \frac{1.62}{.254} \rvert \lvert s + 8.668 \rvert}{ \lvert s + 44.3358 \rvert \lvert s + 0 \rvert  \lvert s + 3.9370 \rvert} = 1
+\end{equation}
  
- solving for K,  we get 89.2629. 
+ substituting our desired pole location for s and solving for K,  we get 64.6407. 
  
  
-\begin{figure}[h!]
+\begin{figure}[!htbp]
 	\includegraphics[width=\textwidth]{imglab/lab4sol_leadpoles.png}
-	\caption{The open loop poles and zeros in blue and the dominant closed loop poles in red on the s plane with damping ratio and natural frequency constraints.}
-\end{figure}
-
-
-\textbf{3.4 Transient Response}
-
-\textbf{Part 1: Constant Feedback}
-
-The Simulink model Lab4\_ConstantFeedback.slx contains a DC servo model with constant feedback gain fed with a unit step input at t=1. We are to find the feedback gain which produces the shortest possible settling time while meeting the same 5\% overshoot restriction as the lead controller we designed. We use Matlab's rlocus() function to plot our DC servo transfer function's root locus. The function sgrid($\zeta$,$\omega_{n}$) with a $\zeta$ of .6901 plots the boundary of the region in the s plane that our closed loop poles may occupy. The function rlocfind() is then used to find a range of feedback gains corresponding to points on the root locus between the divergence from the real axis and the damping ratio boundary. Feedback gains over this region range roughly from 16 to 32. A gain of 32 results in a settling time of about 1.15s with an overshoot of about 4\%.
-
-\begin{figure}[h!]
-	\centering
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width = \textwidth]{imglab/lab4sol_constanttraj.png}
-		\caption{Position trajectory for constant feedback with K = 32.}
-	\end{subfigure}%	
-	\begin{subfigure}{.5\textwidth}
-		\centering
-		\includegraphics[width = \textwidth]{imglab/lab4sol_constanttrajclose.png}
-		\caption{Closeup view of peak of the same.}	
-	\end{subfigure}
+	\caption{ The root locus with open loop poles and zeros in blue and the dominant closed loop poles in red on the s plane with damping ratio and natural frequency constraints.}
 \end{figure}
 
 
 
-\textbf{Part 2: Lead Compensation}
+We use the Simulink model Lab4\_Lead.slx to demonstrate the controller's performance. Two systems receive a unit step input as a position reference. Factoring out the zero and pole from lead compensator transfer function so that it will have unity steady state gain gives us a compensator transfer function
+\begin{equation}
+	\frac{.1154s + 1}{.02256s + 1}
+\end{equation}
 
-To verify the performance of the lead controller we designed, we open Lab4\_Lead.slx and change the lead controller transfer function block to reflect the zero and pole calculated for the controller, and the feedback gain block to K. The input gain block is set to 33.4571, equal to the steady state gain of the feedback path so that the final value will be match the reference.  We could have avoided this requirement by placing the controller gain in the forward path.
+and a gain of 12.6377. For the system with the compensator in the feedback path, we have a peak overshoot of 5.0\% and a settling time of .59 seconds, which meets our requirements. For the system with the compensator in the forward path, the maximum overshoot is 15.7\% and the settling time is .51 seconds.
 
-\begin{figure}[h!]
+\begin{figure}[!htbp]
 	\centering
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtraj.png}
-		\caption{Position vs. time with lead controller.}
+		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtrajfeedback.png}
+		\caption{Position vs. time with lead controller in feedback path.}
 	\end{subfigure}%	
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtrajverification.png}
+		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtrajfeedbackclose.png}
 		\caption{Close up of position trajectory.}	
 	\end{subfigure}
 \end{figure}
 
-\textbf{Part 3: Lag Compensation}
+\begin{figure}[!htbp]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtrajforward.png}
+		\caption{Position vs. time with lead controller in forward path.}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtrajforwardclose.png}
+		\caption{Close up of position trajectory.}	
+	\end{subfigure}
+\end{figure}
 
-\textbf{3.5 Lead vs Lead-Lag Compensation}
+The difference in performance can be understood by considering the difference in the closed loop zeros. Let the open loop servo transfer function G(s) be $\frac{N_{servo}(s)}{D_{servo}(s)}$ and the lead compensator transfer function H(s) be $\frac{N_{lead}(s)}{D_{lead}(s)}$ Where N is numerator and D is the denominator of the transfer functions. The closed loop transfer function for the system with the compensator in the feedback is
+\begin{equation}
+	\frac{KG(s)}{1+KG(s)H(s)}
+\end{equation}
+or, in terms of the N(s) and D(s):
+\begin{equation}
+	\frac{K N_{servo}(s) D_{lead}(s)}{D_{servo}(s) D_{lead}(s) + K N_{servo} N_{lead}}
+\end{equation}
+
+and the transfer function for the system with the compensator in the forward path is
+\begin{equation}
+	\frac{KG(s)H(s)}{1+KG(s)H(s)}
+\end{equation}
+or, in terms of the N(s) and D(s):
+\begin{equation}
+	\frac{K N_{servo}(s) N_{lead}(s)}{D_{servo}(s) D_{lead}(s) + K N_{servo} N_{lead}}
+\end{equation}
+
+Though we have positioned the poles that we hope will be dominant through our lead compensator design, the remaining pole will also contribute to the response. Though the poles are the same for both configurations, the magnitude of each component of the response will depend on the zeros.
+
+\textbf{3.5 Lead-Lag Compensation}
 
 
 \section{Exercises}

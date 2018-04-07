@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.17)  20 MAR 2018 23:31
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.17)  7 APR 2018 02:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -248,24 +248,21 @@ LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <24> not available
 LaTeX Font Warning: Font shape `OT1/cmr/bx/n' in size <24> not available
 (Font)              size <24.88> substituted on input line 15.
 
-<imglab/lab4sol_steppostraj.png, id=1, 978.65625pt x 507.8975pt>
+<imglab/lab4sol_steppostraj.png, id=1, 727.96968pt x 317.68687pt>
 File: imglab/lab4sol_steppostraj.png Graphic file (type png)
 
 <use imglab/lab4sol_steppostraj.png>
 Package pdftex.def Info: imglab/lab4sol_steppostraj.png used on input line 37.
-(pdftex.def)             Requested size: 360.0pt x 186.83415pt.
+(pdftex.def)             Requested size: 360.0pt x 157.10762pt.
 
-<imglab/lab4sol_ramppostraj.png, id=2, 962.59625pt x 501.875pt>
+<imglab/lab4sol_ramppostraj.png, id=2, 727.96968pt x 317.68687pt>
 File: imglab/lab4sol_ramppostraj.png Graphic file (type png)
 
 <use imglab/lab4sol_ramppostraj.png>
 Package pdftex.def Info: imglab/lab4sol_ramppostraj.png used on input line 44.
-(pdftex.def)             Requested size: 360.0pt x 187.68958pt.
- [1
+(pdftex.def)             Requested size: 360.0pt x 157.10762pt.
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./imglab/lab4sol_steppostr
-aj.png>]
-<imglab/lab4sol_rampposkfam.png, id=11, 721.94719pt x 732.48656pt>
+<imglab/lab4sol_rampposkfam.png, id=3, 721.94719pt x 732.48656pt>
 File: imglab/lab4sol_rampposkfam.png Graphic file (type png)
 
 <use imglab/lab4sol_rampposkfam.png>
@@ -281,20 +278,24 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 56.
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-<imglab/lab4sol_rampposerr.png, id=12, 721.94719pt x 732.48656pt>
+<imglab/lab4sol_rampposerr.png, id=4, 721.94719pt x 732.48656pt>
 File: imglab/lab4sol_rampposerr.png Graphic file (type png)
 
 <use imglab/lab4sol_rampposerr.png>
 Package pdftex.def Info: imglab/lab4sol_rampposerr.png used on input line 59.
 (pdftex.def)             Requested size: 180.0pt x 182.6294pt.
- [2 <./imglab/lab4sol_ramppostraj.png> <./imglab/lab4sol_rampposkfam.png (PNG c
-opy)> <./imglab/lab4sol_rampposerr.png (PNG copy)>] <imglab/lab4sol_parapostraj
-.png, id=16, 962.59625pt x 501.875pt>
+ [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./imglab/lab4sol_steppostr
+aj.png (PNG copy)>] [2 <./imglab/lab4sol_ramppostraj.png (PNG copy)> <./imglab/
+lab4sol_rampposkfam.png (PNG copy)> <./imglab/lab4sol_rampposerr.png (PNG copy)
+>]
+<imglab/lab4sol_parapostraj.png, id=16, 721.94719pt x 335.00156pt>
 File: imglab/lab4sol_parapostraj.png Graphic file (type png)
 
 <use imglab/lab4sol_parapostraj.png>
 Package pdftex.def Info: imglab/lab4sol_parapostraj.png used on input line 69.
-(pdftex.def)             Requested size: 360.0pt x 187.68958pt.
+(pdftex.def)             Requested size: 360.0pt x 167.05052pt.
 
 <imglab/lab4sol_paraposkfam.png, id=17, 721.94719pt x 732.48656pt>
 File: imglab/lab4sol_paraposkfam.png Graphic file (type png)
@@ -309,15 +310,15 @@ File: imglab/lab4sol_paraposerr.png Graphic file (type png)
 <use imglab/lab4sol_paraposerr.png>
 Package pdftex.def Info: imglab/lab4sol_paraposerr.png used on input line 84.
 (pdftex.def)             Requested size: 180.0pt x 182.6294pt.
- [3 <./imglab/lab4sol_parapostraj.png> <./imglab/lab4sol_paraposkfam.png (PNG c
-opy)> <./imglab/lab4sol_paraposerr.png (PNG copy)>] <imglab/lab4sol_stepspeedtr
-aj.png, id=22, 970.62625pt x 504.88625pt>
+ [3 <./imglab/lab4sol_parapostraj.png (PNG copy)> <./imglab/lab4sol_paraposkfam
+.png (PNG copy)> <./imglab/lab4sol_paraposerr.png (PNG copy)>]
+<imglab/lab4sol_stepspeedtraj.png, id=22, 727.96968pt x 317.68687pt>
 File: imglab/lab4sol_stepspeedtraj.png Graphic file (type png)
 
 <use imglab/lab4sol_stepspeedtraj.png>
 Package pdftex.def Info: imglab/lab4sol_stepspeedtraj.png used on input line 94
 .
-(pdftex.def)             Requested size: 360.0pt x 187.2595pt.
+(pdftex.def)             Requested size: 360.0pt x 157.10762pt.
 
 <imglab/lab4sol_stepspeedkfam.png, id=23, 721.94719pt x 732.48656pt>
 File: imglab/lab4sol_stepspeedkfam.png Graphic file (type png)
@@ -334,17 +335,16 @@ File: imglab/lab4sol_stepspeederr.png Graphic file (type png)
 Package pdftex.def Info: imglab/lab4sol_stepspeederr.png used on input line 109
 .
 (pdftex.def)             Requested size: 180.0pt x 182.6294pt.
- [4 <./imglab/lab4sol_stepspeedtraj.png> <./imglab/lab4sol_stepspeedkfam.png (P
-NG copy)> <./imglab/lab4sol_stepspeederr.png (PNG copy)>]
-<imglab/lab4sol_rampspeedtraj.png, id=28, 962.59625pt x 501.875pt>
+
+<imglab/lab4sol_rampspeedtraj.png, id=25, 721.94719pt x 335.00156pt>
 File: imglab/lab4sol_rampspeedtraj.png Graphic file (type png)
 
 <use imglab/lab4sol_rampspeedtraj.png>
 Package pdftex.def Info: imglab/lab4sol_rampspeedtraj.png used on input line 11
 9.
-(pdftex.def)             Requested size: 360.0pt x 187.68958pt.
+(pdftex.def)             Requested size: 360.0pt x 167.05052pt.
 
-<imglab/lab4sol_rampspeedkfam.png, id=29, 721.94719pt x 732.48656pt>
+<imglab/lab4sol_rampspeedkfam.png, id=26, 721.94719pt x 732.48656pt>
 File: imglab/lab4sol_rampspeedkfam.png Graphic file (type png)
 
 <use imglab/lab4sol_rampspeedkfam.png>
@@ -352,98 +352,125 @@ Package pdftex.def Info: imglab/lab4sol_rampspeedkfam.png used on input line 12
 9.
 (pdftex.def)             Requested size: 180.0pt x 182.6294pt.
 
-<imglab/lab4sol_rampspeederr.png, id=30, 721.94719pt x 732.48656pt>
+<imglab/lab4sol_rampspeederr.png, id=27, 721.94719pt x 732.48656pt>
 File: imglab/lab4sol_rampspeederr.png Graphic file (type png)
 
 <use imglab/lab4sol_rampspeederr.png>
 Package pdftex.def Info: imglab/lab4sol_rampspeederr.png used on input line 134
 .
 (pdftex.def)             Requested size: 180.0pt x 182.6294pt.
+ [4 <./imglab/lab4sol_stepspeedtraj.png (PNG copy)> <./imglab/lab4sol_stepspeed
+kfam.png (PNG copy)> <./imglab/lab4sol_stepspeederr.png (PNG copy)>]
+<imglab/lab4sol_identification.png, id=31, 962.59625pt x 501.875pt>
+File: imglab/lab4sol_identification.png Graphic file (type png)
 
-Overfull \hbox (6.84122pt too wide) in paragraph at lines 143--145
-[]\OT1/cmr/bx/n/10.95 3.2 Iden-tify $\OML/cmm/m/it/10.95 K[]$ \OT1/cmr/bx/n/10.
-95 and $\OML/cmm/m/it/10.95 ^^\$ \OT1/cmr/m/n/10.95 We run the Simulink model L
-ab4[]Identification.slx
- []
+<use imglab/lab4sol_identification.png>
+Package pdftex.def Info: imglab/lab4sol_identification.png used on input line 1
+46.
+(pdftex.def)             Requested size: 360.0pt x 187.68958pt.
+ [5 <./imglab/lab4sol_rampspeedtraj.png (PNG copy)> <./imglab/lab4sol_rampspeed
+kfam.png (PNG copy)> <./imglab/lab4sol_rampspeederr.png (PNG copy)>]
+<imglab/lab4sol_constantrloc.png, id=37, 1927.2pt x 501.875pt>
+File: imglab/lab4sol_constantrloc.png Graphic file (type png)
 
-[5 <./imglab/lab4sol_rampspeedtraj.png> <./imglab/lab4sol_rampspeedkfam.png (PN
-G copy)> <./imglab/lab4sol_rampspeederr.png (PNG copy)>] [6]
-<imglab/lab4sol_leadpoles.png, id=43, 1445.4pt x 335.00156pt>
-File: imglab/lab4sol_leadpoles.png Graphic file (type png)
+<use imglab/lab4sol_constantrloc.png>
+Package pdftex.def Info: imglab/lab4sol_constantrloc.png used on input line 161
+.
+(pdftex.def)             Requested size: 360.0pt x 93.74905pt.
 
-<use imglab/lab4sol_leadpoles.png>
-Package pdftex.def Info: imglab/lab4sol_leadpoles.png used on input line 202.
-(pdftex.def)             Requested size: 360.0pt x 83.43835pt.
-
-<imglab/lab4sol_constanttraj.png, id=44, 962.59625pt x 1031.855pt>
+<imglab/lab4sol_constanttraj.png, id=38, 994.71625pt x 1031.855pt>
 File: imglab/lab4sol_constanttraj.png Graphic file (type png)
 
 <use imglab/lab4sol_constanttraj.png>
-Package pdftex.def Info: imglab/lab4sol_constanttraj.png used on input line 217
+Package pdftex.def Info: imglab/lab4sol_constanttraj.png used on input line 171
 .
-(pdftex.def)             Requested size: 180.0pt x 192.93701pt.
+(pdftex.def)             Requested size: 180.0pt x 186.7178pt.
 
-<imglab/lab4sol_constanttrajclose.png, id=45, 962.59625pt x 1031.855pt>
+<imglab/lab4sol_constanttrajclose.png, id=39, 994.71625pt x 1031.855pt>
 File: imglab/lab4sol_constanttrajclose.png Graphic file (type png)
 
 <use imglab/lab4sol_constanttrajclose.png>
 Package pdftex.def Info: imglab/lab4sol_constanttrajclose.png used on input lin
-e 222.
-(pdftex.def)             Requested size: 180.0pt x 192.93701pt.
+e 176.
+(pdftex.def)             Requested size: 180.0pt x 186.7178pt.
+ [6 <./imglab/lab4sol_identification.png> <./imglab/lab4sol_constantrloc.png>] 
+[7 <./imglab/lab4sol_constanttraj.png> <./imglab/lab4sol_constanttrajclose.png>
+]
+<imglab/lab4sol_leadpoles.png, id=50, 721.94719pt x 335.00156pt>
+File: imglab/lab4sol_leadpoles.png Graphic file (type png)
 
+<use imglab/lab4sol_leadpoles.png>
+Package pdftex.def Info: imglab/lab4sol_leadpoles.png used on input line 248.
+(pdftex.def)             Requested size: 360.0pt x 167.05052pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+<imglab/lab4sol_leadtrajfeedback.png, id=51, 727.96968pt x 715.17188pt>
+File: imglab/lab4sol_leadtrajfeedback.png Graphic file (type png)
 
-<imglab/lab4sol_leadtraj.png, id=46, 962.59625pt x 1031.855pt>
-File: imglab/lab4sol_leadtraj.png Graphic file (type png)
+<use imglab/lab4sol_leadtrajfeedback.png>
+Package pdftex.def Info: imglab/lab4sol_leadtrajfeedback.png used on input line
+ 265.
+(pdftex.def)             Requested size: 180.0pt x 176.82825pt.
 
-<use imglab/lab4sol_leadtraj.png>
-Package pdftex.def Info: imglab/lab4sol_leadtraj.png used on input line 237.
-(pdftex.def)             Requested size: 180.0pt x 192.93701pt.
+<imglab/lab4sol_leadtrajfeedbackclose.png, id=52, 727.96968pt x 715.17188pt>
+File: imglab/lab4sol_leadtrajfeedbackclose.png Graphic file (type png)
 
-<imglab/lab4sol_leadtrajverification.png, id=47, 721.94719pt x 700.11563pt>
-File: imglab/lab4sol_leadtrajverification.png Graphic file (type png)
+<use imglab/lab4sol_leadtrajfeedbackclose.png>
+Package pdftex.def Info: imglab/lab4sol_leadtrajfeedbackclose.png used on input
+ line 270.
+(pdftex.def)             Requested size: 180.0pt x 176.82825pt.
 
-<use imglab/lab4sol_leadtrajverification.png>
-Package pdftex.def Info: imglab/lab4sol_leadtrajverification.png used on input 
-line 242.
-(pdftex.def)             Requested size: 180.0pt x 174.55843pt.
+<imglab/lab4sol_leadtrajforward.png, id=53, 733.99219pt x 715.17188pt>
+File: imglab/lab4sol_leadtrajforward.png Graphic file (type png)
 
+<use imglab/lab4sol_leadtrajforward.png>
+Package pdftex.def Info: imglab/lab4sol_leadtrajforward.png used on input line 
+279.
+(pdftex.def)             Requested size: 180.0pt x 175.37688pt.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+<imglab/lab4sol_leadtrajforwardclose.png, id=54, 733.99219pt x 715.17188pt>
+File: imglab/lab4sol_leadtrajforwardclose.png Graphic file (type png)
 
-[7 <./imglab/lab4sol_leadpoles.png (PNG copy)>] [8 <./imglab/lab4sol_constanttr
-aj.png> <./imglab/lab4sol_constanttrajclose.png> <./imglab/lab4sol_leadtraj.png
-> <./imglab/lab4sol_leadtrajverification.png (PNG copy)>] [9] [10] [11]
-(./EECS305_Lab4solutions.aux)
+<use imglab/lab4sol_leadtrajforwardclose.png>
+Package pdftex.def Info: imglab/lab4sol_leadtrajforwardclose.png used on input 
+line 284.
+(pdftex.def)             Requested size: 180.0pt x 175.37688pt.
+ [8] [9 <./imglab/lab4sol_leadpoles.png (PNG copy)> <./imglab/lab4sol_leadtrajf
+eedback.png (PNG copy)> <./imglab/lab4sol_leadtrajfeedbackclose.png (PNG copy)>
+] [10 <./imglab/lab4sol_leadtrajforward.png (PNG copy)> <./imglab/lab4sol_leadt
+rajforwardclose.png (PNG copy)>]
+[11] [12] [13] (./EECS305_Lab4solutions.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 3649 strings out of 493304
- 55379 string characters out of 6139871
- 114652 words of memory out of 5000000
- 7048 multiletter control sequences out of 15000+600000
+ 3669 strings out of 493304
+ 56157 string characters out of 6139871
+ 115652 words of memory out of 5000000
+ 7064 multiletter control sequences out of 15000+600000
  9807 words of font info for 37 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,7n,38p,924b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,7n,38p,775b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texl
 ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/te
-xmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/am
-sfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbol
-s/msam10.pfb>
-Output written on EECS305_Lab4solutions.pdf (11 pages, 675136 bytes).
+xmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
+0.pfb>
+Output written on EECS305_Lab4solutions.pdf (13 pages, 858090 bytes).
 PDF statistics:
- 102 PDF objects out of 1000 (max. 8388607)
- 59 compressed objects within 1 object stream
+ 117 PDF objects out of 1000 (max. 8388607)
+ 67 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 91 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 111 words of extra memory for PDF output out of 10000 (max. 10000000)
 

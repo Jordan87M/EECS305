@@ -23,10 +23,8 @@
 \section{BASIC KNOWLEDGE}
 In this experiment, we introduce mathematical models for a DC servomechanism and lead-lag compensator design using the root-locus method
 
-\subsection{Background information on DC servo motor system}
-
 A block diagram for a typical servomechanism is shown in Fig. ~\ref{fig:servoblock}.  The action of the servomechanism is to track a desired position (or speed) despite the 
-presence of disturbance inputs to the process and despite errors in the 
+presence of disturbance inputs to the system and errors in the 
 sensor data.
 
 \begin{figure}[here]
@@ -35,7 +33,7 @@ sensor data.
 \label{fig:servoblock}
 \end{figure}
 
-\subsubsection{Model Development}
+\subsection{Model Development}
 \begin{figure}[here]
 \includegraphics[width=\textwidth]{imglab/servoschemdiagram.png}
 \caption{schematic diagram of the DC servo motor}
@@ -47,98 +45,78 @@ We begin by developing a simplified linear model of an armature controlled DC se
 Neglecting the inductance of the armature circuit, the armature voltage V$_{a}$ produces a current I$_{a}$ as given by:
 
 \begin{equation} \label{eq:1}
-I_{a} = \frac{V_{a}-V_{b}}{R_{a}}
+I_{a}(t) = \frac{V_{a}(t)-V_{b}(t)}{R_{a}}
 \end{equation}
 
-Here V$_{b}$ denotes the back emf of the motor and R$_{a}$ is the armature resistance.
+Here V$_{b}(t)$ denotes the back emf of the motor and R$_{a}$ is the armature resistance.
 
-The motor torque T is proportional to I$_{a}$:
+The motor torque $T(t)$ is proportional to I$_{a}(t)$:
 
 \begin{equation} \label{eq:2}
-T = K_{T}I_{a}
+T(t) = K_{T}I_{a}(t)
 \end{equation}
 
-But from Newton's law, assuming an inertia load:
+From Newton's law, assuming an inertia load:
 
 \begin{equation} \label{eq:3}
-T = J\ddot{\theta}
+T(t) = J\ddot{\theta}(t)
 \end{equation}
 
 combining equations \ref{eq:1}, \ref{eq:2}, and \ref{eq:3} we obtain:
 
 \begin{equation} \label{eq:4}
-K_{T}\left[\frac{V_{a}-V_{b}}{R_{a}}\right] = J\ddot{\theta}
+K_{T}\left[\frac{V_{a}(t)-V_{b}(t)}{R_{a}}\right] = J\ddot{\theta}(t)
 \end{equation} 
 
-Using the relationship V$_{b}$ = K$_{b}\dot{\theta}$ and, letting V$_{a}$ = U (input signal), we have:
+Using the relationship V$_{b}$ = K$_{b}\dot{\theta}$ and, letting V$_{a}(t)$ = u(t) (the input signal), we have:
 
 \begin{equation} \label{eq:5}
-\frac{K_{T}}{R_{a}}\left[U-K_{b}\dot{\theta}\right] = J\ddot{\theta}
+\frac{K_{T}}{R_{a}}\left[u(t)-K_{b}\dot{\theta}(t)\right] = J\ddot{\theta}(t)
 \end{equation}
 
 \begin{equation} \label{eq:6}
-\frac{JR_{a}}{K_{T}}\ddot{\theta}+ K_{b}\dot{\theta} = U
+\frac{JR_{a}}{K_{T}}\ddot{\theta}(t)+ K_{b}\dot{\theta}(t) = u(t)
 \end{equation}
 
 \begin{equation} \label{eq:7}
-\ddot{\theta} + \frac{K_{b}K_{T}}{JR_{a}}\dot{\theta} = \frac{K_{T}}{JR_{a}}U
+\ddot{\theta} + \frac{K_{b}K_{T}}{JR_{a}}\dot{\theta} = \frac{K_{T}}{JR_{a}}u(t)
 \end{equation}
 
-or letting $\omega$ = $\dot{\theta}$, and 
+or letting $\omega$(t) = $\dot{\theta}(t)$, and 
 
 \begin{equation} \label{eq:8}
-\dot{\omega} + \frac{K_{b}K_{T}}{JR_{a}}\omega = \frac{K_{T}}{JR_{a}}U
+\dot{\omega}(t) + \frac{K_{b}K_{T}}{JR_{a}}\omega(t) = \frac{K_{T}}{JR_{a}}U(t)
 \end{equation}
 
 Equations \ref{eq:7} and \ref{eq:8} are the differential equations for the DC motor.
 
-Let $\frac{K_{b}K_{T}}{JR_{a}} = \frac{1}{\tau}$, $\frac{K_{T}}{JR_{a}} = \frac{K_{0s}}{\tau}$. Here, $K_{0s}$ is the static gain and $\tau$ is the time constant of the system from input voltage to output speed. From D.E. \ref{eq:7} we can have the following transfer function:
+Let $\frac{K_{b}K_{T}}{JR_{a}} = \frac{1}{\tau}$, $\frac{K_{T}}{JR_{a}} = \frac{K_{0s}}{\tau}$. Here, $K_{s}$ is the static gain and $\tau$ is the time constant of the system. The D.E. \ref{eq:7} is a model of the system from the input voltage to the output speed. Using the Laplace transform we can convert to the following transfer function from input ($u(t)$) to output position ($\theta (t)$:
 
 \begin{equation} \label{eq:9}
-\frac{\theta(s)}{U(s)} = \frac{K_{0s}}{s(\tau s + 1)}
+\frac{\Theta(s)}{U(s)} = \frac{K_{s}}{s(\tau s + 1)}
 \end{equation}
 
-And from D.E. \ref{eq:8} we obtain the transfer function of the DC motor from U to $\dot{\theta}=\omega$:
+From the D.E. \ref{eq:8} the transfer function of the DC motor from input $u(t)$ to output speed $\dot{\theta}(t)=\omega(t)$ is:
 
 \begin{equation} \label{eq:10}
-\frac{\omega (s)}{U(s)} = \frac{K_{0s}}{(\tau s + 1)}
+\frac{\Omega (s)}{U(s)} = \frac{K_{s}}{(\tau s + 1)}
 \end{equation}
 
-Considering the measurements of speed and position, the system can be depicted as in Fig. ~\ref{fig:servomeasschem}
+The system can be depicted as in Fig. ~\ref{fig:servomeasschem}
 
 \begin{figure}[here]
-\includegraphics[width=\textwidth]{imglab/servomeasurementschematic.png}
-\caption{schematic of the DC motor system with measurements}
+\includegraphics[width=\textwidth]{imglab/servoschematicnomeasurement.png}
+\caption{Schematic of the DC servo system}
 \label{fig:servomeasschem}
 \end{figure}
 
-Then, the second order D.E. of the DC motor can be rewritten in the state-space format:
-
-$x = A\dot{x} + Bu$
-$y = Cx$
-
-where, $x = \left[\begin{matrix}x_{1} \\ x_{2}\end{matrix}\right]$, $u=u$, $y = \left[\begin{matrix}y_{1} \\ y_{2}\end{matrix}\right]$, and
-$A = \left[\begin{matrix}0 & 1 \\ 0 & -\frac{1}{\tau}\end{matrix}\right]$, $B=\left[\begin{matrix} 0 \\ \frac{K_{s}}{\tau} \end{matrix}\right]$, $C = \left[\begin{matrix}C_{1} & 0 \\ 0 & C_{2} \end{matrix}\right]$
-
-Further, the input/output transfer function of the DC motor is:
+The model from input armature voltage to output position has one pole at the origin and one pole on the negative real axis. The problem is to identify the parameters $K_{s},and \tau$. The transfer function from input $u(t)$ to output $\theta(t)$ is:
 
 \begin{equation} \label{eq:11}
-G(s)=\frac{Y(s)}{U(s)} = \left[ \begin{matrix} G_{1}(s) \\ G_{2}(s) \end{matrix} \right] = \left[ \begin{matrix} \frac{C_{1}K_{0x}}{s(\tau s + 1)} \\ \frac{C_{2}K_{0s}}{\tau s + 1} \end{matrix} \right] = \left[ \begin{matrix} \frac{\left(\frac{C_{1}}{C_{2}}\right)*C_{2}K_{0s}}{s(\tau s + 1)} \\ \frac{C_{2}K_{0s}}{\tau s + 1} \end{matrix} \right]
+\frac{\Omega(s)}{U(s)} = \frac{K_{s}}{\tau s + 1}
 \end{equation}
 
-Define: $C_{s}=C_{1}/C_{2} and K_{s}=C_{2}K_{0s}$, then
-
-\begin{equation} \label{eq:12}
-G(s)=\frac{Y(s)}{U(s)} = \left[ \begin{matrix} G_{1}(s) \\ G_{2}(s) \end{matrix} \right] = \left[ \begin{matrix} \frac{C_{s}K_{s}}{s(\tau s + 1)} \\ \frac{K_{s}}{\tau s + 1} \end{matrix} \right]
-\end{equation}
-
-The model has one pole at the origin and one pole on the negative real axis. The problem is to identify parametesr $K_{s}, \tau$ and $C_{s}$. From \ref{eq:12}, the transfer function from input u to output $y_{2}$ is:
-
-\begin{equation} \label{eq:13}
-\frac{Y_{2}(s)}{U(s)} = \frac{K_{s}}{\tau s + 1}
-\end{equation}
-
-The step response of the first order system is shown in Fig. ~\ref{fig:servostepresp}:
+The unit step response of the first order system is shown in Fig. ~\ref{fig:servostepresp}:
 
 \begin{figure}[here]
 \includegraphics[width=\textwidth]{imglab/servostepresponse.png}
@@ -146,29 +124,22 @@ The step response of the first order system is shown in Fig. ~\ref{fig:servostep
 \label{fig:servostepresp}
 \end{figure}
 
-From this diagram, we can determine that the time constant of the motor, $\tau$, is the time it takes $y_{2}$ to reach 63.2\% of its steady state value $y_{2ss}$. We can also obtain the steady-state gain $K_{s} = \frac{y_{2ss}}{U_{ss}}$.
+From this response, we can determine that the time constant of the motor, $\tau$, is the time it takes $\omega(t)$ to reach 63.2\% of its steady-state value $\omega_{ss}$. We can also obtain the steady-state gain $K_{s} = \frac{\omega_{ss}}{u_{ss}}$.
 
-In addition, notice that regarding $C_{s}$ there is a conformity that has to be satisfied:
-
-\begin{equation} \label{eq:14}
-C_{s} = \frac{\frac{dy_{1}}{dt}}{y_2}
-\end{equation}
-This gives the way to identify $C_{s}$.
-
-\subsubsection{Closed Loop Control for a DC servomechanism}
+\subsection{Closed-Loop Control for a DC servomechanism} \label{ss:closedloop}
 The block diagram of Fig. ~\ref{fig:servoblock} for the servomechanism can be simplified into the block diagram given in Fig. ~\ref{fig:servotfblock}.
 
 \begin{figure}[here]
 \includegraphics{imglab/servotfblock.png}
-\caption{simplified block diagram}
+\caption{Simplified block diagram}
 \label{fig:servotfblock}
 \end{figure}
 
-This configuration is referred to as a negative feedback closed loop configuration where G(s) is the forward loop transfer function and H(s) is the feedback loop transfer function. The equivalent transfer function between the input r(t) and the output y(t) as shown in Fig. ~\ref{fig:servostepresp} can be represented as the transfer function G'(s) shown in Fig. ~\ref{fig:servocltfblock}.
+This configuration is referred to as a negative feedback closed-loop control system where $G(s)$ is the forward loop transfer function and H(s) is the feedback loop transfer function. The equivalent transfer function between the input r(t) and the output c(t) as shown in Fig. ~\ref{fig:servostepresp} can be represented as the transfer function $G^{\prime}(s)$ shown in Fig. ~\ref{fig:servocltfblock}.
 
 \begin{figure}[here]
 \includegraphics{imglab/servocltfblock.png}
-\caption{eqivalent closed-loop transfer function}
+\caption{Equivalent closed-loop transfer function}
 \label{fig:servocltfblock}
 \end{figure}
 
@@ -178,15 +149,16 @@ G'(s)=\frac{Y(s)}{U(s)}=\frac{G(s)}{1+G(s)H(s)}
 
 Considering the servomechanism transfer function:
 
-From Eq. \ref{eq:9}: $G(s)=\frac{C_{s}K_{s}}{s(\tau s + 1)}$,
+From Eq. \ref{eq:9}: $G(s)=\frac{K_{s}}{s(\tau s + 1)}$,
 
 H(s) = K$_{1}$ (Output feedback controller gain),
 
-\begin{equation} \label{eq:16}
-G'(s)=\frac{\frac{C_{s}K_{s}}{\tau}}{s^{2} + \frac{s}{\tau} + \frac{K_{1}K_{s}C_{s}}{\tau}}
+\begin{equation} \label{eq:12}
+G'(s)=\frac{\frac{K_{s}}{\tau}}{s^{2} + \frac{s}{\tau} + \frac{K_{1}K_{s}}{\tau}}
 \end{equation}
 
-We observe that the transfer function of the closed-loop system, G'(s) is a second order system with one free controller parameter $K_{1}$. Changing the gain $K_{1}$ can be used to alter the transient dynamics of the second order system.
+We observe that the transfer function of the closed-loop system, $G^{\prime}(s)$, is a second order system with one free controller parameter $K_{1}$. Changing the gain $K_{1}$ can be used to alter the transient response dynamics of the closed-loop second order system.
+
 
 \subsection{Background information on lead-lag compensator design}
 Lead and lag compensators are used quite extensively in control. A lead compensator can increase the stability or speed of response of a system; a lag compensator can reduce (but not eliminate) the steady state error. If improvements in both transient response and steady-state response are desired, then both a lead compensator and a lag compensator may be used simultaneously. Depending on the effect desired, one or more lead and lag compensators may be used in various combinations.
@@ -209,7 +181,7 @@ Procedure:
 
 \subsection{Identify $K_{s}$ and $\tau$}
 \begin{enumerate}
-\item Run \textbf{MATLAB} and open the model \textbf{Lab4\_identification.slx}. The \textit{DC servo} block contains a masked model of a DC servo motor. Run the model. A unit step input is applied to the motor winding at t = 1s. Open the scope and look at the angular velocity trace. Determine the steady-state speed of the motor. This is the value of $K_{s}$, the steady-state gain. Determine the time at which the speed reaches 63.2\% of its final value. Find the elapsed time since the step function was applied. This value is the time constant $\tau$.
+\item Run MATLAB and open the model \textbf{Lab4\_identification.slx}. The DC servo block contains a masked model of a DC servo motor. Run the model. A unit step input is applied to the motor winding at t = 1s. Open the scope and look at the angular velocity trace. Determine the steady-state speed of the motor. This is the value of $K_{s}$, the steady-state gain. Determine the time at which the speed reaches 63.2\% of its final value. Find the elapsed time since the step function was applied. This value is the time constant $\tau$.
  
 \end{enumerate}
 
@@ -224,11 +196,11 @@ Procedure:
 %\end{enumerate}
 
 
-\subsection{Transient Behavior for Constant Feedback}
+\subsection{Proportional Feedback}
 \begin{enumerate}
 \item Open the Simulink model \textbf{Lab4\_ConstantFeedback.slx}, which contains our servo model with fixed gain feedback. 
 
-\item What is the shortest settling time you can obtain with a constant feedback that meets our overshoot requirements? You might use MATLAB's rlocus() to plot the root locus, sgrid() to get the boundary associated with our zeta constraint, and rlocfind() to get the gain associated with your desired closed loop pole locations.
+\item What is the shortest settling time you can obtain with proportional feedback that results in a peak overshoot of less than 5\%? You might use MATLAB's rlocus() to plot the root locus, sgrid() to get the boundary associated with our zeta constraint, and rlocfind() to get the gain associated with your desired closed loop pole locations.
 
 \end{enumerate}
 
@@ -241,7 +213,7 @@ Procedure:
 \item The transient response specifications are as follows:
 \begin{enumerate}
 \item Maximum percentage overshoot less than 5%
-\item Settling time (2\% band) less than 1.2 seconds
+\item Settling time (2\% band) less than .6 seconds
 \end{enumerate}
 
 Calculate the corresponding restrictions on the values of the damping ratio $\zeta$ and the natural frequency $\omega_{n}$.
@@ -256,7 +228,7 @@ Suggested procedure:
 
 \item Find the real axis projection of the desired pole location.
 
-\item \label{step:zeropos} Place the controller zero at or to the left of this point on the real axis, but not too far (consider the limit in which the lead pole goes to -\infty and has an angle of 0).
+\item \label{step:zeropos} Place the controller zero at or to the left of this point on the real axis, but not too far (consider the limit in which the lead pole goes to $-\infty$ and has an angle of 0).
 
 \item Determine where on the real axis the controller pole must be placed using the \textit{angle criterion}. Remember that a lead compensator has its pole to the left of its zero.
 
@@ -268,13 +240,28 @@ Suggested procedure:
 
 \item Record the zero, pole, and gain values.
 
-\item Open the Simulink model \textbf{Lab4\_Lead.slx}, which contains our servo model with a lead compensator transfer function in the feedback path.
+\item Open the Simulink model \textbf{Lab4\_Lead.slx}. This model contains the following five systems:
 
-\item Calculate the steady-state gain of the lead compensator and scale our reference signal accordingly. The reference we are providing in this configuration corresponds must match the compensator output at the desired state, not the desired state itself.
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+System & Input & Control  \\ \hline
+1 & step & lead in feedback path \\ \hline 
+2 & step & lead in forward path \\ \hline 
+3 & ramp & lead in feedback path \\ \hline 
+4 & ramp & lead in forward path \\ \hline 
+5 & ramp & proportional \\ \hline 
+\end{tabular}
+\end{center}
 
-\item Change the appropriate blocks in the model to match the zero, pole, and feedback gain values.
 
-\item Run the simulation. Does the system trajectory meet the specifications? 
+\item For systems 1-4, change the gains and lead compensator transfer function blocks to match the controller parameters just determined. For system 5, set the G5 block to a proportional gain constant determined in the previous part, or another value that meets the maximum overshoot constraint.
+
+\item Run the simulation. 
+
+Regarding the step-fed systems, does the system trajectory meet the specifications? How do the responses of the feedback path compensated system and the forward path compensated system differ? What impact does the compensator configuration have on the closed loop transfer function and how does this explain the transient behavior?
+
+Regarding the ramp-fed systems, how does the lead compensator and its placement affect the steady state error?
 
 \end{enumerate}
 
@@ -284,7 +271,7 @@ Suggested procedure:
 
 \item Plot the root locus of the lag compensated system.
 
-\item Try and find a gain that does not exceed our overshoot limit of 5\%. What is the settling time?
+\item Try and find a gain that does not exceed our overshoot limit of 5\%. What is the settling time? What is the effect of the lag compensator on the root locus and the resultant transient behavior.
 
 \end{enumerate}
 
@@ -313,11 +300,11 @@ Suggested procedure:
 
 \item Explain the tracking errors observed in the System Type and Tracking Error in terms of the Final Value Theorem.
 
-\item Plot the transients responses from \ref{ss:transient}. Compare the results of the three situations. Comments are needed to describe the effects of the lead compensator and lag compensator and illustrate why they have those effects.
+%\item Plot the transients responses from \ref{ss:transient}. Compare the results of the three situations. Comments are needed to describe the effects of the lead compensator and lag compensator and illustrate why they have those effects.
 
 %\item Consider the transient responses observed in \ref{ss:transient} for the constant feedback, lead compensated, and lag compensated cases. Comment on the effects of each controller in the time domain and on the locations of the closed loop poles. Explain the reasons for these effects in terms of the open loop zeros (if any) and poles and the feedback gain.
 
-\item Show the detailed procedure of designing the lead compensator based on the root-locus approach. What parameters did you determine for the servo motor? What values did you calculate for $\zeta$ and $\omega_{n}$? What about the zero and pole locations and the gain for the lead compensator? Were you able to meet the specifications laid out in ~\ref{ss:specs}?
+%\item Show the detailed procedure of designing the lead compensator based on the root-locus approach. What parameters did you determine for the servo motor? What values did you calculate for $\zeta$ and $\omega_{n}$? What about the zero and pole locations and the gain for the lead compensator? Were you able to meet the specifications laid out in ~\ref{ss:specs}?
 
 
 
