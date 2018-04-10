@@ -1,5 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage[latin1]{inputenc}
+\usepackage{steinmetz}
+\usepackage{gensymb}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -198,7 +200,7 @@ Procedure:
 
 \subsection{Proportional Feedback}
 \begin{enumerate}
-\item Open the Simulink model \textbf{Lab4\_ConstantFeedback.slx}, which contains our servo model with fixed gain feedback. 
+\item Open the Simulink model \textbf{Lab4\_ProportionalFeedback.slx}, which contains our servo model with fixed gain feedback. 
 
 \item What is the shortest settling time you can obtain with proportional feedback that results in a peak overshoot of less than 5\%? You might use MATLAB's rlocus() to plot the root locus, sgrid() to get the boundary associated with our zeta constraint, and rlocfind() to get the gain associated with your desired closed loop pole locations.
 
@@ -208,7 +210,7 @@ Procedure:
 \begin{enumerate}
 
 
-\item From \textbf{3.1} we know system parameters $K_{s}$ and $\tau$, with which we can estimate the transfer function of the motor and design a controller accordingly.
+\item We know system parameters $K_{s}$ and $\tau$, with which we can estimate the transfer function of the motor and design a controller accordingly.
 
 \item The transient response specifications are as follows:
 \begin{enumerate}
@@ -265,30 +267,60 @@ Regarding the ramp-fed systems, how does the lead compensator and its placement 
 
 \end{enumerate}
 
-\subsection{Lag Compensation}
+%\subsection{Lag Compensation}
+%\begin{enumerate}
+%\item Open the Simulink model \textbf{Lab4\_Lag.slx}, which contains our servo model with a lag compensator transfer function in the forward path.
+
+%\item Plot the root locus of the lag compensated system.
+
+%\item Try and find a gain that does not exceed our overshoot limit of 5\%. What is the settling time? What is the effect of the lag compensator on the root locus and the resultant transient behavior.
+
+%\end{enumerate}
+
+\subsection{Lead-Lag Compensation: Transient Performance with Steady-State Error Reduction}
+Using a lag compensator in addition to a lead compensator can reduce steady state error without significantly changing the transient behavior. We will now design a lag compensator to be used along with the lead compensator from a previous section to improve the ability of the DC servo system to track a ramp reference.
+
+To our overshoot and settling time restrictions, we now add the following requirements:
+
 \begin{enumerate}
-\item Open the Simulink model \textbf{Lab4\_Lag.slx}, which contains our servo model with a lag compensator transfer function in the forward path.
+	\item A steady state velocity error when subject to a unit ramp input of less than .02.
+	\item Approach this error quickly without significant detriment to the transient performance.
+	
+\end{enumerate}
 
-\item Plot the root locus of the lag compensated system.
+\begin{enumerate}
 
-\item Try and find a gain that does not exceed our overshoot limit of 5\%. What is the settling time? What is the effect of the lag compensator on the root locus and the resultant transient behavior.
+\item Design the lag compensator. You might use the following procedure.
+
+\begin{enumerate}
+
+\item Determine $K_{v}$ from the steady state speed error requirement.
+
+\item For a lag compensator $\frac{s+\frac{1}{T}}{s+\frac{1}{\beta T}}$, determine $\beta$ using the relation $K_{v} = \lim_{s \to 0} s K G_{lead}(s) G_{lag}(s) G_{servo}(s)$ to achieve the target $K_{v}$. K is the lead compensator gain.
+
+\item Determine T such that 
+
+\begin{equation}
+\lvert \frac{s_{1}+\frac{1}{T}}{s_{1} + \frac{1}{\beta T}} \rvert \approx 1
+\end{equation}
+
+\begin{equation}
+-5 \degree < \phase{\frac{s_{1}+\frac{1}{T}}{s_{1} + \frac{1}{\beta T}}} < 0 \degree
+\end{equation}
+
+where $s_{1}$ is one of the closed loop pole locations.
 
 \end{enumerate}
 
-\subsection{Lead-Lag Compensation: Transient Performance with Steady-State Error Reduction}
+\item Open the Simulink model \textbf{Lab4\_LeadLag.slx}. This model contains two step input systems for comparing transient behavior between the lead and lead-lag compensated systems. Two ramp input systems are also included for observing the difference in steady state velocity error between the lead and lead-lag compensated systems.
 
-\begin{enumerate}
-\item Open the Simulink model \textbf{Lab4\_LeadLag.slx}. This model is intended to demonstrate an application for a lag compensator. The steady state error in theta for the servo is zero for a step input since the theta-input transfer function is a type 1 system. However, the steady state error for a lead-compensated system is not zero for a ramp input. A lag compensator can reduce this error. 
-
-\item Modify the lead and lag compensator transfer function blocks to match the zero, pole, and gain values previously determined.
+\item Modify the lead and lag compensator transfer function  and gain blocks to reflect the correct controller parameters.
 
 \item Run the simulation.
 
 \item Confirm that the transient response of the step-input system is almost the same as before the addition of the lag compensator.
 
-\item Look at the ramp input systems. Compare the error of the lead compensated system to that of the lead-lag compensated system. Does the lag compensator reduce the steady state error without detriment to transient performance?
-
-\item Look at the step speed reference system at the bottom of the model diagram. How does the lead-lag compensated system performance compare to that of the lead compensated system?
+\item Look at the ramp input systems. Compare the error of the lead compensated system to that of the lead-lag compensated system. Does the lag compensator reduce the steady state error to the level required? How long does it take for the desired error tracking performance to be attained?
 
 \end{enumerate}
 
@@ -298,7 +330,7 @@ Regarding the ramp-fed systems, how does the lead compensator and its placement 
 
 \begin{enumerate}
 
-\item Explain the tracking errors observed in the System Type and Tracking Error in terms of the Final Value Theorem.
+\item Explain the tracking errors observed in the System Type and Tracking Error section in terms of the Final Value Theorem.
 
 %\item Plot the transients responses from \ref{ss:transient}. Compare the results of the three situations. Comments are needed to describe the effects of the lead compensator and lag compensator and illustrate why they have those effects.
 

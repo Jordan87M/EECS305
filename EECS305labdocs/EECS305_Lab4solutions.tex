@@ -295,6 +295,7 @@ or, in terms of the N(s) and D(s):
 	\frac{K N_{servo}(s) D_{lead}(s)}{D_{servo}(s) D_{lead}(s) + K N_{servo} N_{lead}}
 \end{equation}
 
+
 and the transfer function for the system with the compensator in the forward path is
 \begin{equation}
 	\frac{KG(s)H(s)}{1+KG(s)H(s)}
@@ -304,10 +305,64 @@ or, in terms of the N(s) and D(s):
 	\frac{K N_{servo}(s) N_{lead}(s)}{D_{servo}(s) D_{lead}(s) + K N_{servo} N_{lead}}
 \end{equation}
 
-Though we have positioned the poles that we hope will be dominant through our lead compensator design, the remaining pole will also contribute to the response. Though the poles are the same for both configurations, the magnitude of each component of the response will depend on the zeros.
+Though we have positioned the poles that we hope will be dominant through our lead compensator design, the remaining pole's contribution to the response may not be negligble. Though the poles are the same for both configurations, the magnitude of each component of the response will depend on the zeros. This can be seen from a partial fraction decomposition of the closed loop transfer function.
+
+We can improve the performance of our forward path lead compensator by designing a system with a higher gain. This time, we choose to put the lead zero at -9.955 and the pole at -206.3. With the lead transfer function written
+\begin{equation}
+	\frac{.1005s + 1}{.004847s + 1}
+\end{equation}
+ the error gain is 15.595.
+ 
+ The system with the compensator in the feedback path has a peak overshoot of about 5.1\% and a settling time of .58 seconds. With the compensator in the forward path, the peak overshoot is only 7.4\% and the settling time is .52s.
+
+\begin{figure}[!htbp]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtrajfeedbackhighgainclose.png}
+		\caption{Overshoot for higher gain lead compensator in feedback path.}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_leadtrajforwardhighgainclose.png}
+		\caption{Overshoot for higher gain lead compensator in forward path. Overshoot has been reduced with the higher gain compensator.}	
+	\end{subfigure}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_ramperrleadhighgain.png}
+	\caption{Velocity error for a unit ramp position reference.}
+\end{figure}
 
 \textbf{3.5 Lead-Lag Compensation}
+To our second lead compensator we add a lag compensator. We are required to bring the steady state velocity error below .02 in a reasonable time without significantly altering the transient response.
 
+\begin{figure}[!htbp]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_trajleadlagstep.png}
+		\caption{Step response of lead-lag compensated system.}
+	\end{subfigure}%	
+	\begin{subfigure}{.5\textwidth}
+		\centering
+		\includegraphics[width = \textwidth]{imglab/lab4sol_trajleadlagclose.png}
+		\caption{Close up of the same.}	
+	\end{subfigure}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_trajleadvleadlag.png}
+	\caption{Comparison of error for lead and lead-lag compensation.}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+	\includegraphics[width=\textwidth]{imglab/lab4sol_velerrleadvleadlag.png}
+	\caption{Comparison of error for lead and lead-lag compensation.}
+\end{figure}
 
 \section{Exercises}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.17)  7 APR 2018 02:37
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2017.9.17)  10 APR 2018 06:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -438,20 +438,78 @@ line 284.
 eedback.png (PNG copy)> <./imglab/lab4sol_leadtrajfeedbackclose.png (PNG copy)>
 ] [10 <./imglab/lab4sol_leadtrajforward.png (PNG copy)> <./imglab/lab4sol_leadt
 rajforwardclose.png (PNG copy)>]
-[11] [12] [13] (./EECS305_Lab4solutions.aux)
+<imglab/lab4sol_leadtrajfeedbackhighgainclose.png, id=66, 721.94719pt x 732.486
+56pt>
+File: imglab/lab4sol_leadtrajfeedbackhighgainclose.png Graphic file (type png)
+ <use imglab/lab4sol_leadtrajfeedbackhighgainclose.png>
+Package pdftex.def Info: imglab/lab4sol_leadtrajfeedbackhighgainclose.png used 
+on input line 322.
+(pdftex.def)             Requested size: 180.0pt x 182.6294pt.
+
+<imglab/lab4sol_leadtrajforwardhighgainclose.png, id=67, 721.94719pt x 732.4865
+6pt>
+File: imglab/lab4sol_leadtrajforwardhighgainclose.png Graphic file (type png)
+ <use imglab/lab4sol_leadtrajforwardhighgainclose.png>
+Package pdftex.def Info: imglab/lab4sol_leadtrajforwardhighgainclose.png used o
+n input line 327.
+(pdftex.def)             Requested size: 180.0pt x 182.6294pt.
+
+<imglab/lab4sol_ramperrleadhighgain.png, id=68, 721.94719pt x 335.00156pt>
+File: imglab/lab4sol_ramperrleadhighgain.png Graphic file (type png)
+
+<use imglab/lab4sol_ramperrleadhighgain.png>
+Package pdftex.def Info: imglab/lab4sol_ramperrleadhighgain.png used on input l
+ine 334.
+(pdftex.def)             Requested size: 360.0pt x 167.05052pt.
+
+<imglab/lab4sol_trajleadlagstep.png, id=69, 721.94719pt x 732.48656pt>
+File: imglab/lab4sol_trajleadlagstep.png Graphic file (type png)
+
+<use imglab/lab4sol_trajleadlagstep.png>
+Package pdftex.def Info: imglab/lab4sol_trajleadlagstep.png used on input line 
+345.
+(pdftex.def)             Requested size: 180.0pt x 182.6294pt.
+
+<imglab/lab4sol_trajleadlagclose.png, id=70, 721.94719pt x 732.48656pt>
+File: imglab/lab4sol_trajleadlagclose.png Graphic file (type png)
+
+<use imglab/lab4sol_trajleadlagclose.png>
+Package pdftex.def Info: imglab/lab4sol_trajleadlagclose.png used on input line
+ 350.
+(pdftex.def)             Requested size: 180.0pt x 182.6294pt.
+
+<imglab/lab4sol_trajleadvleadlag.png, id=71, 721.94719pt x 335.00156pt>
+File: imglab/lab4sol_trajleadvleadlag.png Graphic file (type png)
+
+<use imglab/lab4sol_trajleadvleadlag.png>
+Package pdftex.def Info: imglab/lab4sol_trajleadvleadlag.png used on input line
+ 357.
+(pdftex.def)             Requested size: 360.0pt x 167.05052pt.
+
+<imglab/lab4sol_velerrleadvleadlag.png, id=72, 721.94719pt x 335.00156pt>
+File: imglab/lab4sol_velerrleadvleadlag.png Graphic file (type png)
+
+<use imglab/lab4sol_velerrleadvleadlag.png>
+Package pdftex.def Info: imglab/lab4sol_velerrleadvleadlag.png used on input li
+ne 363.
+(pdftex.def)             Requested size: 360.0pt x 167.05052pt.
+ [11 <./imglab/lab4sol_leadtrajfeedbackhighgainclose.png (PNG copy)> <./imglab/
+lab4sol_leadtrajforwardhighgainclose.png (PNG copy)> <./imglab/lab4sol_ramperrl
+eadhighgain.png (PNG copy)>]
+[12 <./imglab/lab4sol_trajleadlagstep.png (PNG copy)> <./imglab/lab4sol_trajlea
+dlagclose.png (PNG copy)> <./imglab/lab4sol_trajleadvleadlag.png (PNG copy)>]
+[13 <./imglab/lab4sol_velerrleadvleadlag.png (PNG copy)>] [14] [15]
+(./EECS305_Lab4solutions.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.88pt have occurred.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 3669 strings out of 493304
- 56157 string characters out of 6139871
+ 3704 strings out of 493304
+ 57611 string characters out of 6139871
  115652 words of memory out of 5000000
- 7064 multiletter control sequences out of 15000+600000
+ 7092 multiletter control sequences out of 15000+600000
  9807 words of font info for 37 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,7n,38p,775b,512s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -467,10 +525,10 @@ msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam1
 0.pfb>
-Output written on EECS305_Lab4solutions.pdf (13 pages, 858090 bytes).
+Output written on EECS305_Lab4solutions.pdf (15 pages, 1042495 bytes).
 PDF statistics:
- 117 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 130 PDF objects out of 1000 (max. 8388607)
+ 71 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 111 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 146 words of extra memory for PDF output out of 10000 (max. 10000000)
 
