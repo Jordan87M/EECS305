@@ -338,6 +338,33 @@ We can improve the performance of our forward path lead compensator by designing
 \textbf{3.5 Lead-Lag Compensation}
 To our second lead compensator we add a lag compensator. We are required to bring the steady state velocity error below .02 in a reasonable time without significantly altering the transient response.
 
+Our target $K_{v}$ is 50, given by $\frac{1}{e_{ss}}$.
+
+\begin{equation}
+50 = \lim_{s \to 0} s K G_{lead}(s) G_{lag}(s) G_{sys}(s)
+\end{equation}
+
+We will use this relation to determine the parameter $\beta$ of our lag compensator
+\begin{center}
+\begin{displaymath}
+\frac{s + \frac{1}{T}}{s + \frac{1}{T \beta}}
+\end{displaymath}
+\end{center}
+
+\begin{equation}
+50 = K \times 1 \times \beta \times K_{s}
+\end{equation}
+
+from this, we have $\beta$ equals 1.979, which we round up to 2. In order to choose T, we must balance the preservation of lead compensator transient performance against the speed of our lag compensator action. Choices of T that place the lag compensator pole and zero very near the imaginary axis will reduce the impact on transient performance. Placing the zero and pole close to the the origin enables the difference in the distance between these two points and the target pole location to be kept small, and likewise for the difference in angle. In this way, the impact of the lag compensator on the root locus is minimized. However, placing the lag pole and zero in this way will result in a large time constant for the lag component of the response, resulting in a long delay before the error is reduced to its desired value.
+
+We start by choosing a T such that 
+\begin{equation}
+\frac{\lvert s_{1} - \frac{1}{T} \rvert}{\lvert s_{1} - \frac{1}{2T} \rvert}
+\end{equation}
+
+is within 1\% of 1. Choose T = 10, which meets this criterion. The transient performance has not been significantly affected - the peak overshoot is about 8\% with the lag compensator and the settling time is .535 seconds.
+
+
 \begin{figure}[!htbp]
 	\centering
 	\begin{subfigure}{.5\textwidth}
@@ -347,7 +374,7 @@ To our second lead compensator we add a lag compensator. We are required to brin
 	\end{subfigure}%	
 	\begin{subfigure}{.5\textwidth}
 		\centering
-		\includegraphics[width = \textwidth]{imglab/lab4sol_trajleadlagclose.png}
+		\includegraphics[width = \textwidth]{imglab/lab4sol_trajleadlagstepclose.png}
 		\caption{Close up of the same.}	
 	\end{subfigure}
 \end{figure}
@@ -358,11 +385,14 @@ To our second lead compensator we add a lag compensator. We are required to brin
 	\caption{Comparison of error for lead and lead-lag compensation.}
 \end{figure}
 
+The unit ramp error has been reduced to .02, though it takes nearly 30 seconds approach this limit closely.
 
 \begin{figure}[!htbp]
 	\includegraphics[width=\textwidth]{imglab/lab4sol_velerrleadvleadlag.png}
 	\caption{Comparison of error for lead and lead-lag compensation.}
 \end{figure}
+
+The specifications were not clear regarding the relative importance of minimizing overshoot vs attaining the target velocity error quickly. We have tended to prioritize transient performance over reduction of velocity error.
 
 \section{Exercises}
 
